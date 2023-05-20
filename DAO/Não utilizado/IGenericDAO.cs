@@ -8,10 +8,10 @@ namespace AluguelCarro.DAO
 {
     public interface IGenericDAO<T>
     {
-        public bool adicionar(T item);
-        public bool atualizar(T item);
-        public bool remover(T item);
-        public List<T> buscarTodos();
-        public T buscarPorId(int id);
+        public bool Adicionar(T item);
+        public bool Atualizar(T item);
+        public bool Remover(T item);
+        public List<T> BuscarTodos();
+        public T BuscarPorId(int id);
     }
 }
