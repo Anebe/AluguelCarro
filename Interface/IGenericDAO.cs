@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.DAO
+namespace AluguelCarro.Interface
 {
-    public interface IGenericDAO<T>
+    public interface IGenericDAO<T> where T : class
     {
         public bool Adicionar(T item);
         public bool Atualizar(T item);
-        public bool Remover(T item);
-        public List<T> BuscarTodos();
-        public T BuscarPorId(int id);
+        public bool Remover(int id);
+        public List<T> Buscar();
+        public T Buscar(int id);
     }
 }

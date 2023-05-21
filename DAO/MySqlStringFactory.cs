@@ -1,4 +1,5 @@
 ﻿using AluguelCarro.DTO;
+using AluguelCarro.Interface;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,33 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.DAO
 {
-    internal class MySqlStringFactory<T>
+    internal class MySqlStringFactory<T> : IMySqlStringFactory<T>
     {
         private string table;
         private string[] collunms;
+        
         public MySqlStringFactory()
         {
             table = typeof(T).Name;
             collunms = typeof(T).GetProperties().Select(p => p.Name).ToArray<String>();
         }
         
-        public string GetInsertSql(string exceptFor)
+        public string GetInsertSql(string? exceptFor = null)
         {
-            var colunmsChoosen = string.Join(", ", collunms
+            string colunmsChoosen, valuesChoosen;
+            if (exceptFor != null)
+            {
+                colunmsChoosen = string.Join(", ", collunms
                                                     .Where(p => p != exceptFor));
-            var valuesChoosen = string.Join(", ",  collunms
-                                                    .Where(p => p != exceptFor)
-                                                    .Select(p => $"@{p}"));
+                valuesChoosen = string.Join(", ", collunms
+                                                        .Where(p => p != exceptFor)
+                                                        .Select(p => $"@{p}"));
+            }
+            else
+            {
+                colunmsChoosen = string.Join(", ", collunms);
+                valuesChoosen = string.Join(", ", collunms.Select(p => $"@{p}"));
+            }
 
             string sql = $"insert into {table} ({colunmsChoosen}) values ({valuesChoosen})";
 
@@ -40,7 +51,7 @@ namespace AluguelCarro.DAO
             if(attributesCondition != null)
             {
                 var condition = $"{attributesCondition} = @{attributesCondition}";
-                sql += $"where {condition}";
+                sql += $" where {condition}";
             }
 
             return sql;
