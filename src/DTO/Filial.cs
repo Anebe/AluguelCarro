@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.DTO
+namespace AluguelCarro.src.DTO
 {
     public class Filial
     {
-        public int? Id { get; private set; }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
+        public int? Id { get; set; }
+        public string? Nome { get; set; }
+        public string? Endereco { get; set; }
+        public string? Telefone { get; set; }
+        public string? Cidade { get; set; }
+        public string? Estado { get; set; }
+
         
-        public Filial(int id, string nome, string endereco, string telefone, string cidade, string estado): 
+        
+        /*public Filial(int id, string nome, string endereco, string telefone, string cidade, string estado) :
             this(nome, endereco, telefone, cidade, estado)
         {
             Id = id;
@@ -27,6 +29,6 @@ namespace AluguelCarro.DTO
             Telefone = telefone;
             Cidade = cidade;
             Estado = estado;
-        }
+        }*/
     }
 }

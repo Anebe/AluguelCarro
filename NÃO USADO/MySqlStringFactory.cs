@@ -1,8 +1,9 @@
-﻿using AluguelCarro.DTO;
-using AluguelCarro.Interface;
+﻿using AluguelCarro.Interface;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -14,12 +15,15 @@ namespace AluguelCarro.DAO
     internal class MySqlStringFactory<T> : IMySqlStringFactory<T>
     {
         private string table;
-        private string[] collunms;
-        
+        private List<string> collunms;
+        private List<string> proprieties;
         public MySqlStringFactory()
         {
-            table = typeof(T).Name;
-            collunms = typeof(T).GetProperties().Select(p => p.Name).ToArray<String>();
+            collunms = new List<string>();
+            proprieties = new List<string>();
+            table = "";
+
+            UpdateMapping();
         }
         
         public string GetInsertSql(string? exceptFor = null)
@@ -29,14 +33,14 @@ namespace AluguelCarro.DAO
             {
                 colunmsChoosen = string.Join(", ", collunms
                                                     .Where(p => p != exceptFor));
-                valuesChoosen = string.Join(", ", collunms
+                valuesChoosen = string.Join(", ", proprieties
                                                         .Where(p => p != exceptFor)
                                                         .Select(p => $"@{p}"));
             }
             else
             {
                 colunmsChoosen = string.Join(", ", collunms);
-                valuesChoosen = string.Join(", ", collunms.Select(p => $"@{p}"));
+                valuesChoosen = string.Join(", ", proprieties.Select(p => $"@{p}"));
             }
 
             string sql = $"insert into {table} ({colunmsChoosen}) values ({valuesChoosen})";
@@ -59,7 +63,12 @@ namespace AluguelCarro.DAO
 
         public string GetUpdateSql(string? attributesCondition = null)
         {
-            var attVal = collunms.Select(p => $"{p} = @{p}");
+            List<string> attVal = new List<string>();
+            for (int i = 0; i < collunms.Count; i++)
+            {
+                attVal.Add($"{collunms[i]} = @{proprieties[i]}");
+            }
+
             var attributesAndValues = string.Join(", ", attVal);
             string sql = $"update {table} set {attributesAndValues}";
             if (attributesCondition != null)
@@ -79,6 +88,28 @@ namespace AluguelCarro.DAO
             return sql;
         }
 
+        private void UpdateMapping()
+        {
+
+            if(Attribute.GetCustomAttribute(typeof(T), typeof(TableAttribute)) is TableAttribute tableName){
+                table = tableName.Name ?? typeof(T).Name;
+            }
+
+            foreach (var item in typeof(T).GetProperties())
+            {
+                if (item.GetCustomAttribute<ForeignKeyAttribute>() is ForeignKeyAttribute fk)
+                {
+
+                }
+                if (item.GetCustomAttribute<ColumnAttribute>() is ColumnAttribute columnAttribute)
+                {
+                    string columnName = columnAttribute.Name ?? item.Name;
+                    collunms.Add(columnName);
+                }
+                proprieties.Add(item.Name);
+
+            }
+        }
 
         /*public string GetSelectSql(PropertyInfo? attributesCondition = null)
         {

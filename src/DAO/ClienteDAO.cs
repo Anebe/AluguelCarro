@@ -1,6 +1,6 @@
-﻿using AluguelCarro.DTO;
-using AluguelCarro.Interface;
-using Dapper;
+﻿using AluguelCarro.DAO;
+using AluguelCarro.src.DTO;
+using AluguelCarro.src.Interface;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 using MySqlConnector;
@@ -10,16 +10,16 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Reflection;
 
-namespace AluguelCarro.DAO
+namespace AluguelCarro.src.DAO
 {
     public class ClienteDAO : IClienteDAO
     {
         private IDbConnection _connectionDB;
         private MySqlStringFactory<Cliente> _sqlFactory;
-        
+
         public ClienteDAO(IDbConnection connectionDB)
         {
-            this._connectionDB = connectionDB;
+            _connectionDB = connectionDB;
             _sqlFactory = new MySqlStringFactory<Cliente>();
         }
 
@@ -41,7 +41,7 @@ namespace AluguelCarro.DAO
             }
             return rowAffect > 0;
         }*/
-        
+
         /*public bool Adicionar(Cliente cliente)
         {
             GenericDAO<Cliente> teste = new(_connectionDB, _sqlFactory);
@@ -55,7 +55,7 @@ namespace AluguelCarro.DAO
             }
         }
         */
-        
+
         /*public Cliente Buscar(int id)
         {
             Cliente result;
@@ -75,7 +75,7 @@ namespace AluguelCarro.DAO
             return result;
         }
         */
-        
+
         /*public List<Cliente> Buscar()
         {
             try
@@ -89,7 +89,7 @@ namespace AluguelCarro.DAO
                 throw;
             }
         }*/
-        
+
         /*public bool Atualizar(Cliente cliente)
         {
             string sql;

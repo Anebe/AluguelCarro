@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.DAO
+namespace AluguelCarro.src.Interface
 {
-    internal class FuncionarioDAO
+    internal interface IClienteService
     {
+
     }
 }

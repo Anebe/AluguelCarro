@@ -1,7 +1,9 @@
 ﻿using AluguelCarro.DAO;
 using AluguelCarro.Interface;
-using AluguelCarro.Service;
-using Microsoft.Extensions.Configuration;
+using AluguelCarro.src.DAO;
+using AluguelCarro.src.DTO;
+using AluguelCarro.src.Interface;
+using AluguelCarro.src.Service;
 using Microsoft.Extensions.DependencyInjection;
 using MySqlConnector;
 using System;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro
 {
-    internal class Startup
+    public class Startup
     {
         public static IServiceProvider GetServiceProvider()
         {
@@ -29,12 +31,23 @@ namespace AluguelCarro
                 .Build();*/
 
             //serviceCollection.AddSingleton<IConfiguration>(config);
-            string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
+
+            //string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
+
+
+
+            serviceCollection.AddScoped<ICrudService<Funcionario>, FuncionarioService>();
+            serviceCollection.AddSingleton<IFuncionarioService, FuncionarioService>();
+            serviceCollection.AddSingleton<IFuncionarioDAO, FuncionarioDAO>();
+
+            serviceCollection.AddScoped<ICrudService<Cliente>, ClienteService>();
             serviceCollection.AddSingleton<IClienteService, ClienteService>();
-            serviceCollection.AddSingleton(typeof(IGenericDAO<>), typeof(GenericDAO<>));
-            serviceCollection.AddSingleton(typeof(IMySqlStringFactory<>), typeof(MySqlStringFactory<>));
-            serviceCollection.AddSingleton<IDbConnection>(new MySqlConnection(connectionString));
             serviceCollection.AddSingleton<IClienteDAO, ClienteDAO>();
+            
+            serviceCollection.AddSingleton(typeof(IGenericDAO<>), typeof(GenericDAO<>));
+            //serviceCollection.AddSingleton(typeof(IMySqlStringFactory<>), typeof(MySqlStringFactory<>));
+            //serviceCollection.AddSingleton<IDbConnection>(new MySqlConnection(connectionString));
+
             return serviceCollection.BuildServiceProvider();
         }
     }

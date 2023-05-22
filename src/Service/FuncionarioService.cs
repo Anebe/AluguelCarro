@@ -1,34 +1,32 @@
-﻿using System;
+﻿using AluguelCarro.DAO;
+using AluguelCarro.src.DTO;
+using AluguelCarro.src.Interface;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AluguelCarro.DTO;
-using AluguelCarro.Interface;
-using AluguelCarro.Validator;
-using MySqlConnector;
 
-namespace AluguelCarro.Service
+namespace AluguelCarro.src.Service
 {
-    internal class ClienteService : IClienteService
+    internal class FuncionarioService : IFuncionarioService, ICrudService<Funcionario>
     {
-        private IClienteDAO _clienteDAO;
-        private IGenericDAO<Cliente> _gerericDAO;
+        private IFuncionarioDAO _funcionarioDAO;
+        private IGenericDAO<Funcionario> _gerericDAO;
 
-        public ClienteService(IClienteDAO clienteDAO, IGenericDAO<Cliente> gerericDAO)
+        public FuncionarioService(IFuncionarioDAO funcionarioDAO, IGenericDAO<Funcionario> gerericDAO)
         {
-            _clienteDAO = clienteDAO;
+            _funcionarioDAO = funcionarioDAO;
             _gerericDAO = gerericDAO;
         }
-        
-        public bool Adicionar(Cliente cliente)
+
+        public bool Adicionar(Funcionario funcionario)
         {
             try
             {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Adicionar(cliente);
+                //FuncionarioValidator.Validar(funcionario);
+                return _gerericDAO.Adicionar(funcionario);
             }
             catch (Exception e)
             {
@@ -36,8 +34,8 @@ namespace AluguelCarro.Service
                 throw;
             }
         }
-        
-        public List<Cliente> Buscar()
+
+        public List<Funcionario> Buscar()
         {
             try
             {
@@ -50,8 +48,8 @@ namespace AluguelCarro.Service
                 throw;
             }
         }
-        
-        public Cliente Buscar(int id)
+
+        public Funcionario Buscar(int id)
         {
             try
             {
@@ -64,12 +62,12 @@ namespace AluguelCarro.Service
             }
         }
 
-        public bool Atualizar(Cliente cliente)
+        public bool Atualizar(Funcionario funcionario)
         {
             try
             {
                 //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Atualizar(cliente);
+                return _gerericDAO.Atualizar(funcionario);
             }
             catch (Exception e)
             {
@@ -83,7 +81,8 @@ namespace AluguelCarro.Service
             try
             {
                 //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Remover(id);
+                var funcionario = Buscar(id);
+                return _gerericDAO.Remover(funcionario);
             }
             catch (Exception e)
             {
@@ -91,7 +90,6 @@ namespace AluguelCarro.Service
                 throw;
             }
         }
-    }
 
-    
+    }
 }

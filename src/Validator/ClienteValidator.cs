@@ -1,4 +1,4 @@
-﻿using AluguelCarro.DTO;
+﻿using AluguelCarro.src.DTO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace AluguelCarro.Validator
+namespace AluguelCarro.src.Validator
 {
     public class ClienteValidator
     {
@@ -30,7 +30,7 @@ namespace AluguelCarro.Validator
                 throw;
             }
         }
-        
+
         public static bool ValidarEmail(string email)
         {
             Regex regex = new(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
