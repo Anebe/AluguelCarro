@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.DTO
+namespace AluguelCarro.src.Entity
 {
 
     public class Funcionario : Pessoa
     {
         [Key]
-        public int? Id { get; private set; }
-        public string? Cargo { get; set; }
-        public double? Salario { get; private set; }
+        public int Id { get; private set; }
+        public string Cargo { get; set; }
+        public decimal Salario { get; private set; }
         [Column("dtContratacao")]
-        public DateTime? DataContratacao { get; set; }
+        public DateTime DataContratacao { get; set; }
         [ForeignKey("filial_id")]
-        public Filial? FilialAssociado { get; set; }
+        public Filial FilialAssociado { get; set; }
 
 
 

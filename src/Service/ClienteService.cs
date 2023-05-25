@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AluguelCarro.src.DTO;
+using AluguelCarro.src.Entity;
 using AluguelCarro.src.Interface;
 using MySqlConnector;
 
@@ -22,39 +22,14 @@ namespace AluguelCarro.src.Service
             _gerericDAO = gerericDAO;
         }
 
+
+        //CRUD-------------------------------
         public bool Adicionar(Cliente cliente)
         {
             try
             {
                 //ClienteValidator.Validar(cliente);
                 return _gerericDAO.Adicionar(cliente);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
-
-        public List<Cliente> Buscar()
-        {
-            try
-            {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Buscar();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
-
-        public Cliente Buscar(int id)
-        {
-            try
-            {
-                return _gerericDAO.Buscar(id);
             }
             catch (Exception e)
             {
@@ -77,12 +52,38 @@ namespace AluguelCarro.src.Service
             }
         }
 
-        public bool Remover(int id)
+        public Cliente? BuscarUnico(Cliente cliente)
+        {
+            try
+            {
+                return _gerericDAO.BuscarUnico(cliente);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public List<Cliente> BuscarVarios()
         {
             try
             {
                 //ClienteValidator.Validar(cliente);
-                var cliente = Buscar(id);
+                return _gerericDAO.BuscarVarios();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public bool Remover(Cliente cliente)
+        {
+            try
+            {
+                //ClienteValidator.Validar(cliente);
                 return _gerericDAO.Remover(cliente);
             }
             catch (Exception e)
@@ -90,6 +91,18 @@ namespace AluguelCarro.src.Service
                 Debug.WriteLine(e.Message);
                 throw;
             }
+        }
+
+
+
+        //REGRA DE NEGOCIO-----------------------------------------------------
+        public List<Cliente?>? getClientesInativos(DateTime desdeDe)
+        {
+            if (desdeDe.Date < DateTime.Now.Date && desdeDe.Subtract(DateTime.Now).Hours > 24)
+            {
+                return _clienteDAO.getClientesInativos(desdeDe);
+            }
+            return null;
         }
     }
 

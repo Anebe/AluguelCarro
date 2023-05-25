@@ -1,6 +1,5 @@
 ﻿using AluguelCarro.src.Entity;
 using AluguelCarro.src.Interface;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,30 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Controller
+namespace AluguelCarro.src.Service
 {
-    internal class FrotaController
+    internal class AluguelService : ICrudService<Aluguel>, IAluguelService
     {
-        private IServiceProvider _serviceProvider;
+        private IGenericDAO<Aluguel> _genericDAO;
+        private IAluguelDAO _aluguelDAO;
 
-        private ICrudService<Carro> _crudServiceCarro;
-        private ICarroService _carroService;
-
-        public FrotaController(IServiceProvider serviceProvider)
+        public AluguelService(IGenericDAO<Aluguel> genericDAO, IAluguelDAO aluguelDAO)
         {
-            _serviceProvider = serviceProvider;
-
-            _crudServiceCarro = _serviceProvider.GetRequiredService<ICrudService<Carro>>();
-            _carroService = _serviceProvider.GetRequiredService<ICarroService>();
+            _genericDAO = genericDAO;
+            _aluguelDAO = aluguelDAO;
         }
 
-
-        //CARRO MÉTODOS --------------------------------------------------------------
-        public bool AdicionarCarro(Carro carro)
+        //CRUD ------------------------------------------------
+        public bool Adicionar(Aluguel item)
         {
             try
             {
-                return _crudServiceCarro.Adicionar(carro);
+                return _genericDAO.Adicionar(item);
             }
             catch (Exception e)
             {
@@ -40,11 +34,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarCarro(Carro carro)
+        public bool Atualizar(Aluguel item)
         {
             try
             {
-                return _crudServiceCarro.Atualizar(carro);
+                return _genericDAO.Atualizar(item);
             }
             catch (Exception e)
             {
@@ -53,11 +47,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Carro BuscarCarro(Carro carro)
+        public Aluguel? BuscarUnico(Aluguel item)
         {
             try
             {
-                return _crudServiceCarro.BuscarUnico(carro);
+                return _genericDAO.BuscarUnico(item);
             }
             catch (Exception e)
             {
@@ -66,11 +60,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Carro> BuscarCarroS()
+        public List<Aluguel> BuscarVarios()
         {
             try
             {
-                return _crudServiceCarro.BuscarVarios();
+                return _genericDAO.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -79,11 +73,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverCarro(Carro carro)
+        public bool Remover(Aluguel item)
         {
             try
             {
-                return _crudServiceCarro.Remover(carro);
+                return _genericDAO.Remover(item);
             }
             catch (Exception e)
             {
@@ -91,6 +85,7 @@ namespace AluguelCarro.src.Controller
                 throw;
             }
         }
-
+    
+        //REGRA DE NEGOCIO ------------------------------------------------
     }
 }

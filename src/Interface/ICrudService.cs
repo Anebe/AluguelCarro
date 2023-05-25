@@ -10,8 +10,8 @@ namespace AluguelCarro.src.Interface
     {
         public bool Adicionar(T item);
         public bool Atualizar(T item);
-        public bool Remover(int id);
-        public List<T> Buscar();
-        public T Buscar(int id);
+        public bool Remover(T item);
+        public T? BuscarUnico(T item);
+        public List<T> BuscarVarios();
     }
 }

@@ -45,7 +45,19 @@ namespace AluguelCarro.src.DAO
             }
         }
 
-        public List<T> Buscar()
+        public T? BuscarUnico(T item)
+        {
+            try
+            {
+                return _dbContext.Find<T>(item);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<T> BuscarVarios()
         {
             try
             {
@@ -53,22 +65,9 @@ namespace AluguelCarro.src.DAO
             }
             catch (Exception)
             {
-
                 throw;
             }
 
-        }
-
-        public T Buscar(int id)
-        {
-            try
-            {
-                return _dbContext.Find<T>(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
 
         public bool Remover(T item)

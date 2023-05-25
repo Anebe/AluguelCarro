@@ -1,5 +1,5 @@
 ﻿using AluguelCarro.Interface;
-using AluguelCarro.src.DTO;
+using AluguelCarro.src.Entity;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using System;
@@ -17,8 +17,11 @@ namespace AluguelCarro.src.DAO
         public DbSet<Funcionario> Funcionario { get; set; }
         public DbSet<Filial> Filial { get; set; }
 
+        public DbSet<Aluguel> Aluguel { get; set; }
+        public DbSet<Carro> Carro { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 

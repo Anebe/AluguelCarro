@@ -1,4 +1,4 @@
-﻿using AluguelCarro.DAO;
+﻿using AluguelCarro.src.DAO;
 using AluguelCarro.src.Entity;
 using AluguelCarro.src.Interface;
 using System;
@@ -10,36 +10,22 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Service
 {
-    internal class FuncionarioService : IFuncionarioService, ICrudService<Funcionario>
+    internal class FilialService : ICrudService<Filial>, IFilialService
     {
-        private IFuncionarioDAO _funcionarioDAO;
-        private IGenericDAO<Funcionario> _gerericDAO;
+        private IGenericDAO<Filial> _genericDAO;
+        private IFuncionarioDAO _filialDAO;
 
-        public FuncionarioService(IFuncionarioDAO funcionarioDAO, IGenericDAO<Funcionario> gerericDAO)
+        public FilialService(IGenericDAO<Filial> genericDAO, IFuncionarioDAO filialDAO)
         {
-            _funcionarioDAO = funcionarioDAO;
-            _gerericDAO = gerericDAO;
+            _genericDAO = genericDAO;
+            _filialDAO = filialDAO;
         }
 
-        public bool Adicionar(Funcionario funcionario)
+        public bool Adicionar(Filial item)
         {
             try
             {
-                //FuncionarioValidator.Validar(funcionario);
-                return _gerericDAO.Adicionar(funcionario);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
-        
-        public Funcionario BuscarUnico(Funcionario funcionario)
-        {
-            try
-            {
-                return _gerericDAO.BuscarUnico(funcionario);
+                return _genericDAO.Adicionar(item);
             }
             catch (Exception e)
             {
@@ -48,12 +34,11 @@ namespace AluguelCarro.src.Service
             }
         }
 
-        public bool Atualizar(Funcionario funcionario)
+        public bool Atualizar(Filial item)
         {
             try
             {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Atualizar(funcionario);
+                return _genericDAO.Atualizar(item);
             }
             catch (Exception e)
             {
@@ -62,12 +47,11 @@ namespace AluguelCarro.src.Service
             }
         }
 
-        public List<Funcionario> BuscarVarios()
+        public Filial? BuscarUnico(Filial item)
         {
             try
             {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.BuscarVarios();
+                return _genericDAO.BuscarUnico(item);
             }
             catch (Exception e)
             {
@@ -76,12 +60,11 @@ namespace AluguelCarro.src.Service
             }
         }
 
-        public bool Remover(Funcionario funcionario)
+        public List<Filial> BuscarVarios()
         {
             try
             {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Remover(funcionario);
+                return _genericDAO.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -90,5 +73,17 @@ namespace AluguelCarro.src.Service
             }
         }
 
+        public bool Remover(Filial item)
+        {
+            try
+            {
+                return _genericDAO.Remover(item);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
     }
 }

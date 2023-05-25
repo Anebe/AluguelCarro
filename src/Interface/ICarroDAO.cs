@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Interface
 {
-    internal interface IClienteService
+    internal interface ICarroDAO
     {
-        public List<Cliente?>? getClientesInativos(DateTime desdeDe);
+        public List<Carro> BuscaFilterBy(decimal? minPrice, decimal? maxPrice);
     }
 }

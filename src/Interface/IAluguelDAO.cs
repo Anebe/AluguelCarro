@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Interface
 {
-    internal interface IClienteService
+    internal interface IAluguelDAO
     {
-        public List<Cliente?>? getClientesInativos(DateTime desdeDe);
+        public List<Aluguel> BuscarFilterBy(Estado estado);
     }
 }

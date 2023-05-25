@@ -2,17 +2,17 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AluguelCarro.src.DTO
+namespace AluguelCarro.src.Entity
 {
     public class Cliente : Pessoa
     {
-        public int? Id { get; set; }
-        public string? Cnh { get; set; }
-        public DateTime? DtNascimento { get; set; }
-        public string? Renach { get; set; }
+        public int Id { get; set; }
+        public string Cnh { get; set; }
+        public DateTime DtNascimento { get; set; }
+        public string Renach { get; set; }
 
 
-        
+
         /*public Cliente(string nome, string cpf, string cnh, DateTime dtNascimento, string email, string rg, string telefone, string renach) :
             base(nome, cpf, email, rg, telefone)
         {

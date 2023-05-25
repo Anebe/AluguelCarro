@@ -1,7 +1,9 @@
 ﻿using AluguelCarro.src.DTO;
+using AluguelCarro.src.Entity;
 using AluguelCarro.src.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
+using System.Security.Cryptography.Pkcs;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -18,6 +20,9 @@ namespace AluguelCarro.src.Controller
         private ICrudService<Aluguel> _crudServiceAluguel;
         private IAluguelService _aluguelService;
 
+        private ICrudService<Carro> _crudServiceCarro;
+        private ICarroService _carroService;
+        
         public AtendimentoController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -27,6 +32,9 @@ namespace AluguelCarro.src.Controller
             
             _crudServiceAluguel = _serviceProvider.GetRequiredService<ICrudService<Aluguel>>();
             _aluguelService = _serviceProvider.GetRequiredService<IAluguelService>();
+
+            _crudServiceCarro = _serviceProvider.GetRequiredService<ICrudService<Carro>>();
+            _carroService = _serviceProvider.GetRequiredService<ICarroService>();
         }
 
         //CLIENTE MÉTODOS --------------------------------------------------------------
@@ -56,11 +64,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Cliente BuscarCliente(int id)
+        public Cliente BuscarCliente(Cliente cliente)
         {
             try
             {
-                return _crudServiceCliente.Buscar(id);
+                return _crudServiceCliente.BuscarUnico(cliente);
             }
             catch (Exception e)
             {
@@ -69,11 +77,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Cliente> BuscarCliente()
+        public List<Cliente> BuscarClientes()
         {
             try
             {
-                return _crudServiceCliente.Buscar();
+                return _crudServiceCliente.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -82,11 +90,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverCliente(int id)
+        public bool RemoverCliente(Cliente cliente)
         {
             try
             {
-                return _crudServiceCliente.Remover(id);
+                return _crudServiceCliente.Remover(cliente);
             }
             catch (Exception e)
             {
@@ -123,11 +131,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Aluguel BuscarAluguel(int id)
+        public Aluguel? BuscarAluguel(Aluguel aluguel)
         {
             try
             {
-                return _crudServiceAluguel.Buscar(id);
+                return _crudServiceAluguel.BuscarUnico(aluguel);
             }
             catch (Exception e)
             {
@@ -136,11 +144,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Aluguel> BuscarAluguel()
+        public List<Aluguel> BuscarAlugueis()
         {
             try
             {
-                return _crudServiceAluguel.Buscar();
+                return _crudServiceAluguel.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -149,11 +157,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverAluguel(int id)
+        public bool RemoverAluguel(Aluguel aluguel)
         {
             try
             {
-                return _crudServiceAluguel.Remover(id);
+                return _crudServiceAluguel.Remover(aluguel);
             }
             catch (Exception e)
             {
@@ -162,5 +170,38 @@ namespace AluguelCarro.src.Controller
             }
         }
 
+
+        //CARRO MÉTODOS --------------------------------------------------------------
+        public Carro BuscarCarro(Carro carro)
+        {
+            try
+            {
+                return _crudServiceCarro.BuscarUnico(carro);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+        
+        public List<Carro> BuscarCarros()
+        {
+            try
+            {
+                return _crudServiceCarro.BuscarVarios();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+        
+        //UTIL --------------------------------------------------------------
+        private Aluguel ConvertTo(AluguelDTO aluguel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

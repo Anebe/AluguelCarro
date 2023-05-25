@@ -1,4 +1,4 @@
-﻿using AluguelCarro.src.DTO;
+﻿using AluguelCarro.src.Entity;
 using AluguelCarro.src.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,14 +17,18 @@ namespace AluguelCarro.src.Controller
         private ICrudService<Funcionario> _crudServiceFuncionario;
         private IFuncionarioService _funcionarioService;
 
+        private ICrudService<Filial> _crudServiceFilial;
+        private IFilialService _filialService;
         public AdminController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
             _crudServiceFuncionario = _serviceProvider.GetRequiredService<ICrudService<Funcionario>>();
             _funcionarioService = _serviceProvider.GetRequiredService<IFuncionarioService>();
-        }
 
+            _crudServiceFilial = _serviceProvider.GetRequiredService<ICrudService<Filial>>();
+            _filialService = _serviceProvider.GetRequiredService<IFilialService>();
+        }
 
 
         //FUNCIONÁRIO MÉTODOS --------------------------------------------------------------
@@ -55,11 +59,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Funcionario BuscarFuncionario(int id)
+        public Funcionario BuscarFuncionario(Funcionario funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.Buscar(id);
+                return _crudServiceFuncionario.BuscarUnico(funcionario);
             }
             catch (Exception e)
             {
@@ -68,11 +72,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Funcionario> BuscarFuncionario()
+        public List<Funcionario> BuscarFuncionarios()
         {
             try
             {
-                return _crudServiceFuncionario.Buscar();
+                return _crudServiceFuncionario.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -81,11 +85,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverFuncionario(int id)
+        public bool RemoverFuncionario(Funcionario funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.Remover(id);
+                return _crudServiceFuncionario.Remover(funcionario);
             }
             catch (Exception e)
             {
@@ -95,6 +99,71 @@ namespace AluguelCarro.src.Controller
         }
 
         //FILIAL MÉTODOS --------------------------------------------------------------
+
+        public bool AdicionarFuncionario(Filial filial)
+        {
+            try
+            {
+                return _crudServiceFilial.Adicionar(filial);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public bool AtualizarFilial(Filial filial)
+        {
+            try
+            {
+                return _crudServiceFilial.Atualizar(filial);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public Filial BuscarFilial(Filial filial)
+        {
+            try
+            {
+                return _crudServiceFilial.BuscarUnico(filial);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public List<Filial> BuscarFilials()
+        {
+            try
+            {
+                return _crudServiceFilial.BuscarVarios();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public bool RemoverFilial(Filial filial)
+        {
+            try
+            {
+                return _crudServiceFilial.Remover(filial);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
 
     }
 }
