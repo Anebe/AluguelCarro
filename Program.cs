@@ -1,8 +1,5 @@
 
-using AluguelCarro.DAO;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
+
 
 namespace AluguelCarro
 {

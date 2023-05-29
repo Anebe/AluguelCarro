@@ -6,17 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Entity
+namespace CloneAluguel.Entity
 {
     public class Carro
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-
-        [ForeignKey("id_grupo")] public Grupo GrupoCarro { get; set; }
-        [ForeignKey("id_filial")] public Filial FilialAssociado { get; set; }
+        public int Id_grupo { get; set; }
+        public int Id_filial { get; set; }
     }
 }

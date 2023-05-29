@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.Entity
+namespace CloneAluguel.DTO
 {
-    public class Grupo
+    public class GrupoDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }

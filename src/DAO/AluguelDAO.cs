@@ -1,25 +1,61 @@
-﻿using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+﻿using CloneAluguel.DAO.Interface;
+using CloneAluguel.DTO;
+using CloneAluguel.Entity;
+using CloneAluguel.Util;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.DAO
+namespace CloneAluguel.DAO
 {
-    internal class AluguelDAO : IAluguelDAO
+    internal class AluguelDAO : IGenericDAO<Aluguel>
     {
-        MySqlContext _dbContext;
+        private IDbConnection _dbConnection;
+        private IMySqlStringFactory<Aluguel> _sqlFactory;
 
-        public AluguelDAO()
+        public AluguelDAO(IDbConnection dbConnection, IMySqlStringFactory<Aluguel> sqlFactory)
         {
-            _dbContext = new MySqlContext();
+            _dbConnection = dbConnection;
+            _sqlFactory = sqlFactory;
         }
 
-        public List<Aluguel> BuscarFilterBy(Estado estado)
+        public bool Adicionar(Aluguel item)
         {
-           return _dbContext.Aluguel.Where(a => a.Estado == estado).ToList();
+            string sql = _sqlFactory.GetInsertSql("Id");
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
+        }
+
+        public bool Atualizar(Aluguel item)
+        {
+            string sql = _sqlFactory.GetUpdateSql();
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
+        }
+
+        public Aluguel? BuscarUnico(Aluguel item)
+        {
+            string sql = _sqlFactory.GetSelectSql();
+            var aluguel = _dbConnection.QuerySingle<Aluguel>(sql, item);
+            return aluguel;
+        }
+
+        public List<Aluguel> BuscarVarios()
+        {
+            string sql = _sqlFactory.GetSelectSql();
+            var aluguel = _dbConnection.Query<Aluguel>(sql);
+            return aluguel.ToList();
+        }
+
+        public bool Remover(Aluguel item)
+        {
+            string sql = _sqlFactory.GetDeleteSql("Id");
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
         }
     }
 }

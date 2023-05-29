@@ -1,6 +1,6 @@
 ﻿using AluguelCarro.src.DTO;
 using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Security.Cryptography.Pkcs;
@@ -16,13 +16,15 @@ namespace AluguelCarro.src.Controller
         private ICrudService<Cliente> _crudServiceCliente;
         private IClienteService _clienteService;
 
-
         private ICrudService<Aluguel> _crudServiceAluguel;
         private IAluguelService _aluguelService;
 
         private ICrudService<Carro> _crudServiceCarro;
         private ICarroService _carroService;
-        
+
+        private IFuncionarioService _funcionarioService;
+        private Funcionario _funcLogado;
+
         public AtendimentoController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
@@ -35,8 +37,19 @@ namespace AluguelCarro.src.Controller
 
             _crudServiceCarro = _serviceProvider.GetRequiredService<ICrudService<Carro>>();
             _carroService = _serviceProvider.GetRequiredService<ICarroService>();
+
+            _funcionarioService = _serviceProvider.GetRequiredService<IFuncionarioService>();
         }
 
+
+        //
+        public bool login(string usuario, string senha)
+        {
+            Login login = new() { Usuario = usuario, Senha = senha };
+            _funcLogado = _funcionarioService.Login(login);
+            return _funcLogado != null ? true : false;
+        }
+        
         //CLIENTE MÉTODOS --------------------------------------------------------------
         public bool AdicionarCliente(Cliente cliente)
         {
@@ -149,19 +162,6 @@ namespace AluguelCarro.src.Controller
             try
             {
                 return _crudServiceAluguel.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
-
-        public bool RemoverAluguel(Aluguel aluguel)
-        {
-            try
-            {
-                return _crudServiceAluguel.Remover(aluguel);
             }
             catch (Exception e)
             {

@@ -5,8 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+using AluguelCarro.src.Service.Interface;
 using MySqlConnector;
 
 namespace AluguelCarro.src.Service

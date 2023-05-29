@@ -1,4 +1,4 @@
-﻿using AluguelCarro.src.Interface;
+﻿using AluguelCarro.src.DAO.Interface;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;

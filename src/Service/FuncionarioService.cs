@@ -1,6 +1,6 @@
-﻿using AluguelCarro.DAO;
+﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+using AluguelCarro.src.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,11 +14,13 @@ namespace AluguelCarro.src.Service
     {
         private IFuncionarioDAO _funcionarioDAO;
         private IGenericDAO<Funcionario> _gerericDAO;
+        private IGenericDAO<Login> _loginDAO;
 
-        public FuncionarioService(IFuncionarioDAO funcionarioDAO, IGenericDAO<Funcionario> gerericDAO)
+        public FuncionarioService(IFuncionarioDAO funcionarioDAO, IGenericDAO<Funcionario> gerericDAO, IGenericDAO<Login> loginDAO)
         {
             _funcionarioDAO = funcionarioDAO;
             _gerericDAO = gerericDAO;
+            _loginDAO = loginDAO;
         }
 
         public bool Adicionar(Funcionario funcionario)
@@ -90,5 +92,11 @@ namespace AluguelCarro.src.Service
             }
         }
 
+        /////////////
+        public Funcionario Login(Login login)
+        {
+            var func = _loginDAO.BuscarUnico(login);
+            return func != null ? func.Funcionario : null;
+        }
     }
 }

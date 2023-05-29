@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Interface
+namespace CloneAluguel.DAO.Interface
 {
-    internal interface ICrudService<T> where T : class
+    public interface IGenericDAO<T> where T : class
     {
         public bool Adicionar(T item);
         public bool Atualizar(T item);

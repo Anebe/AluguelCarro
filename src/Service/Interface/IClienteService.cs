@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Interface
+namespace AluguelCarro.src.Service.Interface
 {
-    internal interface IClienteDAO
+    internal interface IClienteService
     {
-        public List<Cliente> getClientesInativos(DateTime desdeDe);
+        public List<Cliente?>? getClientesInativos(DateTime desdeDe);
     }
 }

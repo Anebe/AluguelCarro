@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Interface
+namespace AluguelCarro.src.DAO.Interface
 {
     internal interface IAluguelDAO
     {

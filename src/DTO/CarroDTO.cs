@@ -1,13 +1,21 @@
-﻿using AluguelCarro.src.Entity;
+﻿using CloneAluguel.Entity;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace AluguelCarro.src.DTO
+namespace CloneAluguel.DTO
 {
     public class CarroDTO
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
-        public Grupo GrupoCarro { get; set; }
-        public Filial FilialAssociado { get; set; }
+
+        public GrupoDTO GrupoCarro { get; set; }
+        public FilialDTO FilialAssociado { get; set; }
     }
 }

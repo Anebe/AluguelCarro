@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.Interface
+namespace CloneAluguel.Util
 {
     public interface IMySqlStringFactory<T>
     {

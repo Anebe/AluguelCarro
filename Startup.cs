@@ -1,19 +1,9 @@
-﻿using AluguelCarro.DAO;
-using AluguelCarro.Interface;
-using AluguelCarro.src.DAO;
-using AluguelCarro.src.DTO;
+﻿using AluguelCarro.src.DAO;
+using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
 using AluguelCarro.src.Service;
+using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
-using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AluguelCarro
 {
@@ -38,16 +28,20 @@ namespace AluguelCarro
 
 
             serviceCollection.AddScoped<ICrudService<Funcionario>, FuncionarioService>();
-            serviceCollection.AddSingleton<IFuncionarioService, FuncionarioService>();
-            serviceCollection.AddSingleton<IFuncionarioDAO, FuncionarioDAO>();
-
             serviceCollection.AddScoped<ICrudService<Cliente>, ClienteService>();
-            serviceCollection.AddSingleton<IClienteService, ClienteService>();
-            serviceCollection.AddSingleton<IClienteDAO, ClienteDAO>();
-
             serviceCollection.AddScoped<ICrudService<Carro>, CarroService>();
+            serviceCollection.AddScoped<ICrudService<Aluguel>, AluguelService>();
+
+            serviceCollection.AddSingleton<IFuncionarioService, FuncionarioService>();
+            serviceCollection.AddSingleton<IClienteService, ClienteService>();
             serviceCollection.AddSingleton<ICarroService, CarroService>();
+            serviceCollection.AddSingleton<IAluguelService, AluguelService>();
+
+            serviceCollection.AddSingleton<IFuncionarioDAO, FuncionarioDAO>();
+            serviceCollection.AddSingleton<IClienteDAO, ClienteDAO>();
             serviceCollection.AddSingleton<ICarroDAO, CarroDAO>();
+            serviceCollection.AddSingleton<IAluguelDAO, AluguelDAO>();
+
 
             serviceCollection.AddSingleton(typeof(IGenericDAO<>), typeof(GenericDAO<>));
             //serviceCollection.AddSingleton(typeof(IMySqlStringFactory<>), typeof(MySqlStringFactory<>));

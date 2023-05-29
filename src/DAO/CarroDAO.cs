@@ -1,26 +1,61 @@
-﻿using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+﻿using CloneAluguel.DAO.Interface;
+using CloneAluguel.DTO;
+using CloneAluguel.Entity;
+using CloneAluguel.Util;
+using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.DAO
+namespace CloneAluguel.DAO
 {
-    internal class CarroDAO: ICarroDAO
+    public class CarroDAO : IGenericDAO<Carro>
     {
-        MySqlContext _dbContext;
+        private IDbConnection _dbConnection;
+        private IMySqlStringFactory<Carro> _sqlFactory;
 
-        public CarroDAO()
+        public CarroDAO(IDbConnection dbConnection, IMySqlStringFactory<Carro> sqlFactory)
         {
-            _dbContext = new MySqlContext();
+            _dbConnection = dbConnection;
+            _sqlFactory = sqlFactory;
         }
 
-        public List<Carro> BuscaFilterBy(decimal? minPrice, decimal? maxPrice)
+        public bool Adicionar(Carro item)
         {
-            return _dbContext.Carro.Where(a => minPrice.HasValue && a.GrupoCarro.ValorDiaria > minPrice 
-                                            || maxPrice.HasValue && a.GrupoCarro.ValorDiaria > maxPrice).ToList();
+            string sql = _sqlFactory.GetInsertSql();
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
+        }
+
+        public bool Atualizar(Carro item)
+        {
+            string sql = _sqlFactory.GetUpdateSql();
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
+        }
+
+        public Carro? BuscarUnico(Carro item)
+        {
+            string sql = _sqlFactory.GetSelectSql();
+            var carro = _dbConnection.QuerySingle<Carro>(sql, item);
+            return carro;
+        }
+
+        public List<Carro> BuscarVarios()
+        {
+            string sql = _sqlFactory.GetSelectSql();
+            var carro = _dbConnection.Query<Carro>(sql);
+            return carro.ToList();
+        }
+
+        public bool Remover(Carro item)
+        {
+            string sql = _sqlFactory.GetDeleteSql("Id");
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
         }
     }
 }

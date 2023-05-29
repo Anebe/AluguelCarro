@@ -1,4 +1,4 @@
-﻿namespace AluguelCarro.src.Interface
+﻿namespace AluguelCarro.src.DAO.Interface
 {
     internal interface IFuncionarioDAO
     {

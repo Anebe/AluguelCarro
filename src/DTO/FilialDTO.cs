@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.Entity
+namespace CloneAluguel.DTO
 {
-    public class Filial
+    public class FilialDTO
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -14,5 +14,6 @@ namespace CloneAluguel.Entity
         public string Telefone { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
+        public List<FuncionarioDTO> Funcionarios { get; set; }
     }
 }

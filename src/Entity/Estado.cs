@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.src.Entity
+namespace CloneAluguel.Entity
 {
     public class Estado
     {

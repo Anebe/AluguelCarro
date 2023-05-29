@@ -1,6 +1,4 @@
-﻿using AluguelCarro.Interface;
-using MySqlConnector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +8,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AluguelCarro.DAO
+namespace CloneAluguel.Util
 {
-    internal class MySqlStringFactory<T> : IMySqlStringFactory<T>
+    public class MySqlStringFactory<T> : IMySqlStringFactory<T>
     {
         private string table;
         private List<string> collunms;
         private List<string> proprieties;
+
         public MySqlStringFactory()
         {
             collunms = new List<string>();
@@ -25,10 +24,11 @@ namespace AluguelCarro.DAO
 
             UpdateMapping();
         }
-        
+
         public string GetInsertSql(string? exceptFor = null)
         {
             string colunmsChoosen, valuesChoosen;
+
             if (exceptFor != null)
             {
                 colunmsChoosen = string.Join(", ", collunms
@@ -52,7 +52,7 @@ namespace AluguelCarro.DAO
         {
             string sql = $"select * from {table}";
 
-            if(attributesCondition != null)
+            if (attributesCondition != null)
             {
                 var condition = $"{attributesCondition} = @{attributesCondition}";
                 sql += $" where {condition}";
@@ -91,21 +91,16 @@ namespace AluguelCarro.DAO
         private void UpdateMapping()
         {
 
-            if(Attribute.GetCustomAttribute(typeof(T), typeof(TableAttribute)) is TableAttribute tableName){
-                table = tableName.Name ?? typeof(T).Name;
-            }
+
+            table = typeof(T).Name;
+
 
             foreach (var item in typeof(T).GetProperties())
             {
-                if (item.GetCustomAttribute<ForeignKeyAttribute>() is ForeignKeyAttribute fk)
-                {
 
-                }
-                if (item.GetCustomAttribute<ColumnAttribute>() is ColumnAttribute columnAttribute)
-                {
-                    string columnName = columnAttribute.Name ?? item.Name;
-                    collunms.Add(columnName);
-                }
+                string columnName = item.Name;
+                collunms.Add(columnName);
+
                 proprieties.Add(item.Name);
 
             }
@@ -160,7 +155,7 @@ namespace AluguelCarro.DAO
 
             return sql;
         }*/
-       
+
         /*private string GetInsertSql(PropertyInfo? exceptFor = null)
         {
 

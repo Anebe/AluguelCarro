@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CloneAluguel.Entity;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AluguelCarro.src.DTO
+namespace CloneAluguel.DTO
 {
-    public class ClienteDTO : PessoaDTO
+    public class ClienteDTO : Pessoa
     {
-        public int Id { get; private set; }
-        public string Cnh { get; private set; }
+        public int Id { get; set; }
+        public string Cnh { get; set; }
         public DateTime DtNascimento { get; set; }
         public string Renach { get; set; }
     }

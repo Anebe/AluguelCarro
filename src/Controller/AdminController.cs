@@ -1,5 +1,5 @@
 ﻿using AluguelCarro.src.Entity;
-using AluguelCarro.src.Interface;
+using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -144,19 +144,6 @@ namespace AluguelCarro.src.Controller
             try
             {
                 return _crudServiceFilial.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-        }
-
-        public bool RemoverFilial(Filial filial)
-        {
-            try
-            {
-                return _crudServiceFilial.Remover(filial);
             }
             catch (Exception e)
             {
