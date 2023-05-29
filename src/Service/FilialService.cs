@@ -1,90 +1,42 @@
-﻿using AluguelCarro.src.DAO;
-using AluguelCarro.src.DAO.Interface;
+﻿using AluguelCarro.src.DAO.Interface;
+using AluguelCarro.src.DTO;
 using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Service
 {
-    internal class FilialService : ICrudService<Filial>, IFilialService
+    internal class FilialService : IFilialService
     {
-        private IGenericDAO<Filial> _genericDAO;
         private IFuncionarioDAO _filialDAO;
 
-        public FilialService(IGenericDAO<Filial> genericDAO, IFuncionarioDAO filialDAO)
+        public FilialService(IFuncionarioDAO filialDAO)
         {
-            _genericDAO = genericDAO;
             _filialDAO = filialDAO;
         }
 
-        public bool Adicionar(Filial item)
+        public bool Adicionar(FilialDTO item)
         {
-            try
-            {
-                return _genericDAO.Adicionar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Atualizar(Filial item)
+        public bool Atualizar(FilialDTO item)
         {
-            try
-            {
-                return _genericDAO.Atualizar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public Filial? BuscarUnico(Filial item)
+        public FilialDTO? BuscarUnico(FilialDTO item)
         {
-            try
-            {
-                return _genericDAO.BuscarUnico(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<Filial> BuscarVarios()
+        public List<FilialDTO> BuscarVarios()
         {
-            try
-            {
-                return _genericDAO.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Remover(Filial item)
+        public bool Remover(FilialDTO item)
         {
-            try
-            {
-                return _genericDAO.Remover(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
     }
 }

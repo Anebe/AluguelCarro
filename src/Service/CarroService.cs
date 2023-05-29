@@ -1,7 +1,8 @@
-﻿using AluguelCarro.src.DAO;
-using AluguelCarro.src.DAO.Interface;
+﻿using AluguelCarro.src.DAO.Interface;
+using AluguelCarro.src.DTO;
 using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
+using AluguelCarro.src.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,82 +10,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AluguelCarro.src.Service
 {
-    internal class CarroService : ICrudService<Carro>, ICarroService
+    internal class CarroService : ICarroService
     {
         private ICarroDAO _carroDAO;
-        private IGenericDAO<Carro> _genericDAO;
 
-        public CarroService(ICarroDAO carroDAO, IGenericDAO<Carro> genericDAO)
+        public CarroService(ICarroDAO carroDAO)
         {
             _carroDAO = carroDAO;
-            _genericDAO = genericDAO;
         }
 
-        public bool Adicionar(Carro item)
+        public bool Adicionar(CarroDTO item)
         {
-            try
-            {
-                return _genericDAO.Adicionar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Atualizar(Carro item)
+        public bool Atualizar(CarroDTO item)
         {
-            try
-            {
-                return _genericDAO.Atualizar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public Carro? BuscarUnico(Carro item)
+        public CarroDTO? BuscarUnico(CarroDTO item)
         {
-            try
-            {
-                return _genericDAO.BuscarUnico(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<Carro> BuscarVarios()
+        public List<CarroDTO> BuscarVarios()
         {
-            try
-            {
-                return _genericDAO.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Remover(Carro item)
+        public bool Remover(CarroDTO item)
         {
-            try
-            {
-                return _genericDAO.Remover(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
     }
 }

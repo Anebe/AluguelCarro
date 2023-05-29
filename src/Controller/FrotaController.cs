@@ -1,4 +1,5 @@
-﻿using AluguelCarro.src.Entity;
+﻿using AluguelCarro.src.DTO;
+using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,25 +14,22 @@ namespace AluguelCarro.src.Controller
     internal class FrotaController
     {
         private IServiceProvider _serviceProvider;
-
-        private ICrudService<Carro> _crudServiceCarro;
         private ICarroService _carroService;
 
         public FrotaController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
-            _crudServiceCarro = _serviceProvider.GetRequiredService<ICrudService<Carro>>();
             _carroService = _serviceProvider.GetRequiredService<ICarroService>();
         }
 
 
         //CARRO MÉTODOS --------------------------------------------------------------
-        public bool AdicionarCarro(Carro carro)
+        public bool AdicionarCarro(CarroDTO carro)
         {
             try
             {
-                return _crudServiceCarro.Adicionar(carro);
+                return _carroService.Adicionar(carro);
             }
             catch (Exception e)
             {
@@ -40,11 +38,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarCarro(Carro carro)
+        public bool AtualizarCarro(CarroDTO carro)
         {
             try
             {
-                return _crudServiceCarro.Atualizar(carro);
+                return _carroService.Atualizar(carro);
             }
             catch (Exception e)
             {
@@ -53,11 +51,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Carro BuscarCarro(Carro carro)
+        public CarroDTO BuscarCarro(CarroDTO carro)
         {
             try
             {
-                return _crudServiceCarro.BuscarUnico(carro);
+                return _carroService.BuscarUnico(carro);
             }
             catch (Exception e)
             {
@@ -66,11 +64,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Carro> BuscarCarroS()
+        public List<CarroDTO> BuscarCarroS()
         {
             try
             {
-                return _crudServiceCarro.BuscarVarios();
+                return _carroService.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -79,11 +77,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverCarro(Carro carro)
+        public bool RemoverCarro(CarroDTO carro)
         {
             try
             {
-                return _crudServiceCarro.Remover(carro);
+                return _carroService.Remover(carro);
             }
             catch (Exception e)
             {

@@ -1,7 +1,6 @@
-﻿using CloneAluguel.DAO.Interface;
-using CloneAluguel.DTO;
-using CloneAluguel.Entity;
-using CloneAluguel.Util;
+﻿using AluguelCarro.src.DAO.Interface;
+using AluguelCarro.src.Entity;
+using AluguelCarro.src.Util;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -10,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.DAO
+namespace AluguelCarro.src.DAO
 {
-    public class CarroDAO : IGenericDAO<Carro>
+    public class CarroDAO : ICarroDAO
     {
         private IDbConnection _dbConnection;
         private IMySqlStringFactory<Carro> _sqlFactory;

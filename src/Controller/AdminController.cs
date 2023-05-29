@@ -1,4 +1,5 @@
-﻿using AluguelCarro.src.Entity;
+﻿using AluguelCarro.src.DTO;
+using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,31 +14,24 @@ namespace AluguelCarro.src.Controller
     internal class AdminController
     {
         private IServiceProvider _serviceProvider;
-
-        private ICrudService<Funcionario> _crudServiceFuncionario;
         private IFuncionarioService _funcionarioService;
-
-        private ICrudService<Filial> _crudServiceFilial;
         private IFilialService _filialService;
         public AdminController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
-            _crudServiceFuncionario = _serviceProvider.GetRequiredService<ICrudService<Funcionario>>();
             _funcionarioService = _serviceProvider.GetRequiredService<IFuncionarioService>();
-
-            _crudServiceFilial = _serviceProvider.GetRequiredService<ICrudService<Filial>>();
             _filialService = _serviceProvider.GetRequiredService<IFilialService>();
         }
 
 
         //FUNCIONÁRIO MÉTODOS --------------------------------------------------------------
 
-        public bool AdicionarFuncionario(Funcionario funcionario)
+        public bool AdicionarFuncionario(FuncionarioDTO funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.Adicionar(funcionario);
+                return _funcionarioService.Adicionar(funcionario);
             }
             catch (Exception e)
             {
@@ -46,11 +40,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarFuncionario(Funcionario funcionario)
+        public bool AtualizarFuncionario(FuncionarioDTO funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.Atualizar(funcionario);
+                return _funcionarioService.Atualizar(funcionario);
             }
             catch (Exception e)
             {
@@ -59,11 +53,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Funcionario BuscarFuncionario(Funcionario funcionario)
+        public FuncionarioDTO BuscarFuncionario(FuncionarioDTO funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.BuscarUnico(funcionario);
+                return _funcionarioService.BuscarUnico(funcionario);
             }
             catch (Exception e)
             {
@@ -72,11 +66,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Funcionario> BuscarFuncionarios()
+        public List<FuncionarioDTO> BuscarFuncionarios()
         {
             try
             {
-                return _crudServiceFuncionario.BuscarVarios();
+                return _funcionarioService.BuscarVarios();
             }
             catch (Exception e)
             {
@@ -85,11 +79,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverFuncionario(Funcionario funcionario)
+        public bool RemoverFuncionario(FuncionarioDTO funcionario)
         {
             try
             {
-                return _crudServiceFuncionario.Remover(funcionario);
+                return _funcionarioService.Remover(funcionario);
             }
             catch (Exception e)
             {
@@ -100,11 +94,11 @@ namespace AluguelCarro.src.Controller
 
         //FILIAL MÉTODOS --------------------------------------------------------------
 
-        public bool AdicionarFuncionario(Filial filial)
+        public bool AdicionarFuncionario(FilialDTO filial)
         {
             try
             {
-                return _crudServiceFilial.Adicionar(filial);
+                return _filialService.Adicionar(filial);
             }
             catch (Exception e)
             {
@@ -113,11 +107,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarFilial(Filial filial)
+        public bool AtualizarFilial(FilialDTO filial)
         {
             try
             {
-                return _crudServiceFilial.Atualizar(filial);
+                return _filialService.Atualizar(filial);
             }
             catch (Exception e)
             {
@@ -126,11 +120,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public Filial BuscarFilial(Filial filial)
+        public FilialDTO BuscarFilial(FilialDTO filial)
         {
             try
             {
-                return _crudServiceFilial.BuscarUnico(filial);
+                return _filialService.BuscarUnico(filial);
             }
             catch (Exception e)
             {
@@ -139,11 +133,11 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<Filial> BuscarFilials()
+        public List<FilialDTO> BuscarFilials()
         {
             try
             {
-                return _crudServiceFilial.BuscarVarios();
+                return _filialService.BuscarVarios();
             }
             catch (Exception e)
             {

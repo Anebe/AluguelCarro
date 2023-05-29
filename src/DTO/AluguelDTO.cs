@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.DTO
+namespace AluguelCarro.src.DTO
 {
     public class AluguelDTO
     {

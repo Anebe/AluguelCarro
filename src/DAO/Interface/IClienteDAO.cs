@@ -1,4 +1,5 @@
 ﻿using AluguelCarro.src.Entity;
+using AluguelCarro.src.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DAO.Interface
 {
-    internal interface IClienteDAO
+    internal interface IClienteDAO : IGenericCRUD<Cliente>
     {
-        public List<Cliente> getClientesInativos(DateTime desdeDe);
+        //public List<Cliente> getClientesInativos(DateTime desdeDe);
     }
 }

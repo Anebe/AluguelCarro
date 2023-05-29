@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CloneAluguel.Entity
+namespace AluguelCarro.src.Entity
 {
     public class Cliente : Pessoa
     {

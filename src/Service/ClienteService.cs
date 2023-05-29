@@ -6,104 +6,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AluguelCarro.src.DAO.Interface;
+using AluguelCarro.src.DTO;
 using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 using MySqlConnector;
 
 namespace AluguelCarro.src.Service
 {
-    internal class ClienteService : IClienteService, ICrudService<Cliente>
+    internal class ClienteService : IClienteService
     {
         private IClienteDAO _clienteDAO;
-        private IGenericDAO<Cliente> _gerericDAO;
 
-        public ClienteService(IClienteDAO clienteDAO, IGenericDAO<Cliente> gerericDAO)
+        public ClienteService(IClienteDAO clienteDAO)
         {
             _clienteDAO = clienteDAO;
-            _gerericDAO = gerericDAO;
         }
 
 
         //CRUD-------------------------------
-        public bool Adicionar(Cliente cliente)
+        public bool Adicionar(ClienteDTO item)
         {
-            try
-            {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Adicionar(cliente);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            var cliente = convertTo(item);
+            return _clienteDAO.Adicionar(cliente);
+            
         }
 
-        public bool Atualizar(Cliente cliente)
+        public bool Atualizar(ClienteDTO item)
         {
-            try
-            {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Atualizar(cliente);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            var cliente = convertTo(item);
+            return _clienteDAO.Atualizar(cliente);
+            
         }
 
-        public Cliente? BuscarUnico(Cliente cliente)
+        public ClienteDTO? BuscarUnico(ClienteDTO item)
         {
-            try
-            {
-                return _gerericDAO.BuscarUnico(cliente);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            var cliente = convertTo(item);
+            cliente = _clienteDAO.BuscarUnico(cliente);
+            var result = convertTo(cliente);
+            return result;
+            
         }
 
-        public List<Cliente> BuscarVarios()
+        public List<ClienteDTO> BuscarVarios()
         {
-            try
-            {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            var clientes = _clienteDAO.BuscarVarios();
+            List<ClienteDTO> result = new List<ClienteDTO>();
+            clientes.ForEach(a => result.Add(convertTo(a)));
+            return result;
+            
         }
 
-        public bool Remover(Cliente cliente)
+        public bool Remover(ClienteDTO item)
         {
-            try
-            {
-                //ClienteValidator.Validar(cliente);
-                return _gerericDAO.Remover(cliente);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            var cliente = convertTo(item);
+            return _clienteDAO.Remover(cliente);
+            
         }
 
-
-
-        //REGRA DE NEGOCIO-----------------------------------------------------
-        public List<Cliente?>? getClientesInativos(DateTime desdeDe)
+        //UTIL-------------------
+        private static Cliente convertTo(ClienteDTO item)
         {
-            if (desdeDe.Date < DateTime.Now.Date && desdeDe.Subtract(DateTime.Now).Hours > 24)
-            {
-                return _clienteDAO.getClientesInativos(desdeDe);
-            }
-            return null;
+            Cliente result = new() { Cnh = item.Cnh, Cpf = item.Cpf, DtNascimento = item.DtNascimento, Email = item.Email, Id = item.Id, Nome = item.Nome };
+            return result;
+        }
+        private static ClienteDTO convertTo(Cliente item)
+        {
+            ClienteDTO result = new() { Cnh = item.Cnh, Cpf = item.Cpf, DtNascimento = item.DtNascimento, Email = item.Email, Id = item.Id, Nome = item.Nome };
+            return result;
         }
     }
 

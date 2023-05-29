@@ -1,4 +1,4 @@
-﻿using CloneAluguel.Entity;
+﻿using AluguelCarro.src.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.DTO
+namespace AluguelCarro.src.DTO
 {
 
     public class FuncionarioDTO : Pessoa
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Cargo { get; set; }
-        public decimal Salario { get; private set; }
+        public decimal Salario { get; set; }
         public DateTime DataContratacao { get; set; }
         public FilialDTO FilialAssociado { get; set; }
     }

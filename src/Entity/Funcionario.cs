@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.Entity
+namespace AluguelCarro.src.Entity
 {
 
     public class Funcionario : Pessoa
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Cargo { get; set; }
-        public decimal Salario { get; private set; }
+        public decimal Salario { get; set; }
         public DateTime DataContratacao { get; set; }
         public int Filial_id { get; set; }
     }

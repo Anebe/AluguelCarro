@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Entity
 {
-    internal class Login
+    public class Login
     {
         public string Usuario { get; set; }
         public string Senha { get; set; }
-        public Funcionario Funcionario{ get; set; }
+        public int funcionario_id { get; set; }
     }
 }

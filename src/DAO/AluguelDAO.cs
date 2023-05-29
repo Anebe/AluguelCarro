@@ -1,18 +1,17 @@
-﻿using CloneAluguel.DAO.Interface;
-using CloneAluguel.DTO;
-using CloneAluguel.Entity;
-using CloneAluguel.Util;
-using Dapper;
+﻿using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AluguelCarro.src.Util;
+using AluguelCarro.src.Entity;
+using AluguelCarro.src.DAO.Interface;
 
-namespace CloneAluguel.DAO
+namespace AluguelCarro.src.DAO
 {
-    internal class AluguelDAO : IGenericDAO<Aluguel>
+    internal class AluguelDAO : IAluguelDAO
     {
         private IDbConnection _dbConnection;
         private IMySqlStringFactory<Aluguel> _sqlFactory;

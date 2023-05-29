@@ -1,9 +1,9 @@
-﻿using CloneAluguel.Entity;
+﻿using AluguelCarro.src.Entity;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CloneAluguel.DTO
+namespace AluguelCarro.src.DTO
 {
     public class ClienteDTO : Pessoa
     {

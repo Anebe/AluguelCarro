@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloneAluguel.Entity
+namespace AluguelCarro.src.Entity
 {
     public class Aluguel
     {

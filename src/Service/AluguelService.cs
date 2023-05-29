@@ -7,86 +7,48 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AluguelCarro.src.Util;
+using AluguelCarro.src.DTO;
 
 namespace AluguelCarro.src.Service
 {
-    internal class AluguelService : ICrudService<Aluguel>, IAluguelService
+    internal class AluguelService : IAluguelService
     {
-        private IGenericDAO<Aluguel> _genericDAO;
         private IAluguelDAO _aluguelDAO;
 
-        public AluguelService(IGenericDAO<Aluguel> genericDAO, IAluguelDAO aluguelDAO)
+        public AluguelService(IAluguelDAO aluguelDAO)
         {
-            _genericDAO = genericDAO;
             _aluguelDAO = aluguelDAO;
         }
 
+
         //CRUD ------------------------------------------------
-        public bool Adicionar(Aluguel item)
+        public bool Adicionar(AluguelDTO item)
         {
-            try
-            {
-                return _genericDAO.Adicionar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Atualizar(Aluguel item)
+        public bool Atualizar(AluguelDTO item)
         {
-            try
-            {
-                return _genericDAO.Atualizar(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public Aluguel? BuscarUnico(Aluguel item)
+        public AluguelDTO? BuscarUnico(AluguelDTO item)
         {
-            try
-            {
-                return _genericDAO.BuscarUnico(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public List<Aluguel> BuscarVarios()
+        public List<AluguelDTO> BuscarVarios()
         {
-            try
-            {
-                return _genericDAO.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
 
-        public bool Remover(Aluguel item)
+        public bool Remover(AluguelDTO item)
         {
-            try
-            {
-                return _genericDAO.Remover(item);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            throw new NotImplementedException();
         }
-    
+
+
         //REGRA DE NEGOCIO ------------------------------------------------
     }
 }
