@@ -1,5 +1,5 @@
 ﻿using AluguelCarro.src.DAO.Interface;
-using AluguelCarro.src.Entity;
+using AluguelCarro.src.DTO;
 using AluguelCarro.src.Util;
 using Dapper;
 using System;
@@ -14,43 +14,43 @@ namespace AluguelCarro.src.DAO
     internal class FilialDAO : IFilialDAO
     {
         private IDbConnection _dbConnection;
-        private IMySqlStringFactory<Filial> _sqlFactory;
+        private IMySqlStringFactory<FilialDTO> _sqlFactory;
 
-        public FilialDAO(IDbConnection dbConnection, IMySqlStringFactory<Filial> sqlFactory)
+        public FilialDAO(IDbConnection dbConnection, IMySqlStringFactory<FilialDTO> sqlFactory)
         {
             _dbConnection = dbConnection;
             _sqlFactory = sqlFactory;
         }
 
-        public bool Adicionar(Filial item)
+        public bool Adicionar(FilialDTO item)
         {
             string sql = _sqlFactory.GetInsertSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public bool Atualizar(Filial item)
+        public bool Atualizar(FilialDTO item)
         {
             string sql = _sqlFactory.GetUpdateSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public Filial? BuscarUnico(Filial item)
+        public FilialDTO? BuscarUnico(FilialDTO item)
         {
             string sql = _sqlFactory.GetSelectSql();
-            var filial = _dbConnection.QuerySingle<Filial>(sql, item);
+            var filial = _dbConnection.QuerySingle<FilialDTO>(sql, item);
             return filial;
         }
 
-        public List<Filial> BuscarVarios()
+        public List<FilialDTO> BuscarVarios()
         {
             string sql = _sqlFactory.GetSelectSql();
-            var filial = _dbConnection.Query<Filial>(sql);
+            var filial = _dbConnection.Query<FilialDTO>(sql);
             return filial.ToList();
         }
 
-        public bool Remover(Filial item)
+        public bool Remover(FilialDTO item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");
             int row = _dbConnection.Execute(sql, item);

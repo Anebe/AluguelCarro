@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AluguelCarro.src.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,13 +11,59 @@ namespace AluguelCarro.src.DTO
 {
     public class AluguelDTO
     {
-        public ClienteDTO Cliente { get; set; }
-        public CarroDTO Carro { get; set; }
-        public EstadoDTO Estado { get; set; }
+
+        private ClienteDTO cliente;
+        private CarroDTO carro;
+        private FilialDTO filialDevolucao;
+        private FilialDTO filialBusca;
+
+        public int Id_cliente { get => cliente.Id; }
+        public int Id_carro { get => carro.Id; }
+        public Estado Id_status { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
-        public FilialDTO FilialDevolucao { get; set; }
-        public FilialDTO FilialBusca { get; set; }
+        public int Id_filial_devolucao { get => filialDevolucao.Id; }
+        public int Id_filial_busca { get => filialBusca.Id; }
         public decimal Total { get; set; }
+
+        public ClienteDTO GetCliente()
+        {
+            return cliente;
+        }
+         public void SetCliente(ClienteDTO cliente)
+        {
+            this.cliente = cliente;
+        }
+
+        public CarroDTO getCarro()
+        {
+            return carro;
+        }
+
+        public void SetCarro(CarroDTO carro)
+        {
+            this.carro = carro;
+        }
+
+        public FilialDTO GetFilialDevolucao()
+        {
+            return filialDevolucao;
+        }
+
+        public void SetFilialDevolucao(FilialDTO filialDevolucao)
+        {
+            this.filialDevolucao = filialDevolucao;
+        }
+
+        public FilialDTO GetFilialBusca()
+        {
+            return filialBusca;
+        }
+
+        public void SetFilialBusca(FilialDTO filialBusca)
+        {
+            this.filialBusca = filialBusca;
+        }
+
     }
 }
