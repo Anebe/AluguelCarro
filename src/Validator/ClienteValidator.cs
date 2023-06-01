@@ -1,81 +1,46 @@
-﻿using AluguelCarro.src.Entity;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
+﻿using AluguelCarro.src.DTO;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AluguelCarro.src.Validator
 {
     public class ClienteValidator
     {
-        public static bool Validar(Cliente cliente)
+        public static bool Validar(ClienteDTO cliente)
         {
+            List<ArgumentException> erros = new List<ArgumentException>();
+
             try
             {
-                return ValidarCpf(cliente.Cpf) &&
-                        ValidarCnh(cliente.Cnh) &&
-                        ValidarDataNascimento(cliente.DtNascimento) &&
-                        ValidarEmail(cliente.Email) &&
-                        ValidarRenach(cliente.Renach) &&
-                        ValidarRg(cliente.Rg) &&
-                        ValidarTelefone(cliente.Telefone);
+                PessoaValidator.Validar(cliente);
             }
-            catch (Exception)
+            catch (ArgumentException e)
             {
-
-                throw;
+                erros.Add(e);
             }
-        }
 
-        public static bool ValidarEmail(string email)
-        {
-            Regex regex = new(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
-            if (regex.IsMatch(email))
+            erros.Add(ValidarCnh(cliente.Cnh));
+            erros.Add(ValidarDataNascimento(cliente.DtNascimento));
+            erros.Add(ValidarRenach(cliente.Renach));
+            
+
+            if(erros.Count == 0)
             {
                 return true;
             }
             else
             {
-                throw new ArgumentException("Estrutura de Email inválido");
+                var mensagem = string.Join("\n", erros);
+                throw new ArgumentException(mensagem);
             }
         }
 
-        public static bool ValidarTelefone(string telefone)
-        {
-            Regex regex = new(@"^\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$");
-            if (regex.IsMatch(telefone))
-            {
-                return true;
-            }
-            else
-            {
-                throw new ArgumentException("Estrutura de telefone inválida");
-            }
-        }
-
-        public static bool ValidarCpf(string cpf)
-        {
-            Regex regex = new(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
-            if (regex.IsMatch(cpf))
-            {
-                return true;
-            }
-            else
-            {
-                throw new ArgumentException("Estrutura de cpf inválida");
-            }
-        }
-
-        public static bool ValidarCnh(string cnh)
+        
+        public static ArgumentException ValidarCnh(string cnh)
         {
             Regex regex = new(@"^\d{9}\d{2}$");
             if (regex.IsMatch(cnh))
             {
-                return true;
+                return null;
             }
             else
             {
@@ -83,12 +48,12 @@ namespace AluguelCarro.src.Validator
             }
         }
 
-        public static bool ValidarDataNascimento(DateTime dataNascimento)
+        public static ArgumentException ValidarDataNascimento(DateTime dataNascimento)
         {
             int idade = DateTime.Now.Year - dataNascimento.Year;
             if (idade >= 18)
             {
-                return true;
+                return null;
             }
             else
             {
@@ -96,25 +61,12 @@ namespace AluguelCarro.src.Validator
             }
         }
 
-        public static bool ValidarRg(string rg)
-        {
-            Regex regex = new(@"^\d{12}-\d{1}$");
-            if (regex.IsMatch(rg))
-            {
-                return true;
-            }
-            else
-            {
-                throw new ArgumentException("Estrutura de rg inválida");
-            }
-        }
-
-        public static bool ValidarRenach(string renach)
+        public static ArgumentException ValidarRenach(string renach)
         {
             Regex regex = new(@"^\d{11}$");
             if (regex.IsMatch(renach))
             {
-                return true;
+                return null;
             }
             else
             {

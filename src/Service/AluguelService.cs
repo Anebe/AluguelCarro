@@ -1,5 +1,4 @@
 ﻿using AluguelCarro.src.DAO.Interface;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 using System;
 using System.Collections.Generic;

@@ -1,14 +1,6 @@
 ﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
-using AluguelCarro.src.Util;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace AluguelCarro.src.Service

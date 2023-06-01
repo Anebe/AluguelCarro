@@ -1,5 +1,4 @@
 ﻿using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Util;
 using System;
 using System.Collections.Generic;

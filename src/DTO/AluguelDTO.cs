@@ -1,11 +1,4 @@
-﻿using AluguelCarro.src.Entity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace AluguelCarro.src.DTO
 {
@@ -19,7 +12,7 @@ namespace AluguelCarro.src.DTO
 
         public int Id_cliente { get => cliente.Id; }
         public int Id_carro { get => carro.Id; }
-        public Estado Id_status { get; set; }
+        public EstadoDTO Id_status { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
         public int Id_filial_devolucao { get => filialDevolucao.Id; }

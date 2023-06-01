@@ -1,5 +1,4 @@
 ﻿using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System;

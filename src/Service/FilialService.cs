@@ -1,6 +1,5 @@
 ﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service.Interface;
 
 namespace AluguelCarro.src.Service
