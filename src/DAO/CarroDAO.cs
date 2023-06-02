@@ -14,43 +14,43 @@ namespace AluguelCarro.src.DAO
     public class CarroDAO : ICarroDAO
     {
         private IDbConnection _dbConnection;
-        private IMySqlStringFactory<CarroDTO> _sqlFactory;
+        private IMySqlStringFactory<Carro> _sqlFactory;
 
-        public CarroDAO(IDbConnection dbConnection, IMySqlStringFactory<CarroDTO> sqlFactory)
+        public CarroDAO(IDbConnection dbConnection, IMySqlStringFactory<Carro> sqlFactory)
         {
             _dbConnection = dbConnection;
             _sqlFactory = sqlFactory;
         }
 
-        public bool Adicionar(CarroDTO item)
+        public bool Adicionar(Carro item)
         {
             string sql = _sqlFactory.GetInsertSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public bool Atualizar(CarroDTO item)
+        public bool Atualizar(Carro item)
         {
             string sql = _sqlFactory.GetUpdateSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public CarroDTO? BuscarUnico(CarroDTO item)
+        public Carro? BuscarUnico(Carro item)
         {
-            string sql = _sqlFactory.GetSelectSql();
-            var carro = _dbConnection.QuerySingle<CarroDTO>(sql, item);
+            string sql = _sqlFactory.GetSelectSql(new string[] { "Id" });
+            var carro = _dbConnection.QuerySingle<Carro>(sql, item);
             return carro;
         }
 
-        public List<CarroDTO> BuscarVarios()
+        public List<Carro> BuscarVarios()
         {
             string sql = _sqlFactory.GetSelectSql();
-            var carro = _dbConnection.Query<CarroDTO>(sql);
+            var carro = _dbConnection.Query<Carro>(sql);
             return carro.ToList();
         }
 
-        public bool Remover(CarroDTO item)
+        public bool Remover(Carro item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");
             int row = _dbConnection.Execute(sql, item);

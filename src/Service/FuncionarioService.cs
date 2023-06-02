@@ -7,40 +7,36 @@ namespace AluguelCarro.src.Service
     internal class FuncionarioService : IFuncionarioService
     {
         private IFuncionarioDAO _funcionarioDAO;
-        private IFilialDAO _filialDAO;
-        public FuncionarioService(IFuncionarioDAO funcionarioDAO, IFilialDAO filialDAO)
+
+        public FuncionarioService(IFuncionarioDAO funcionarioDAO)
         {
             _funcionarioDAO = funcionarioDAO;
-            _filialDAO = filialDAO;
         }
 
         //CRUD--------------------------
-        public bool Adicionar(FuncionarioDTO item)
+        public bool Adicionar(Funcionario item)
         {
-
             return _funcionarioDAO.Adicionar(item);
         }
 
-        public bool Atualizar(FuncionarioDTO item)
+        public bool Atualizar(Funcionario item)
         {
-            throw new NotImplementedException();
+            return _funcionarioDAO.Atualizar(item);
         }
 
-        public FuncionarioDTO? BuscarUnico(FuncionarioDTO item)
+        public Funcionario? BuscarUnico(Funcionario item)
         {
-            throw new NotImplementedException();
+            return _funcionarioDAO.BuscarUnico(item);
         }
 
-        public List<FuncionarioDTO> BuscarVarios()
+        public List<Funcionario> BuscarVarios()
         {
-            throw new NotImplementedException();
+            return _funcionarioDAO.BuscarVarios();
         }
 
-
-
-        public bool Remover(FuncionarioDTO item)
+        public bool Remover(Funcionario item)
         {
-            throw new NotImplementedException();
+            return _funcionarioDAO.Remover(item);
         }
         
     }

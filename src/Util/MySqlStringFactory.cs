@@ -48,14 +48,24 @@ namespace AluguelCarro.src.Util
             return sql;
         }
 
-        public string GetSelectSql(string? attributesCondition = null)
+        public string GetSelectSql(string[]? attributesCondition = null)
         {
             string sql = $"select * from {table}";
 
             if (attributesCondition != null)
             {
-                var condition = $"{attributesCondition} = @{attributesCondition}";
-                sql += $" where {condition}";
+                sql += " where ";
+                for (int i = 0; i < attributesCondition.Length; i++)
+                {
+                    var condition = $"{attributesCondition[i]} = @{attributesCondition[i]}";
+
+                    if (i < attributesCondition.Length - 1)
+                    {
+                        condition += " and ";
+                    }
+
+                    sql += condition;
+                }
             }
 
             return sql;

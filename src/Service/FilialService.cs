@@ -6,36 +6,36 @@ namespace AluguelCarro.src.Service
 {
     internal class FilialService : IFilialService
     {
-        private IFuncionarioDAO _filialDAO;
+        private IFilialService _filialDAO;
 
-        public FilialService(IFuncionarioDAO filialDAO)
+        public FilialService(IFilialService filialDAO)
         {
             _filialDAO = filialDAO;
         }
 
-        public bool Adicionar(FilialDTO item)
+        public bool Adicionar(Filial item)
         {
-            throw new NotImplementedException();
+            return _filialDAO.Adicionar(item);
         }
 
-        public bool Atualizar(FilialDTO item)
+        public bool Atualizar(Filial item)
         {
-            throw new NotImplementedException();
+            return _filialDAO.Atualizar(item);
         }
 
-        public FilialDTO? BuscarUnico(FilialDTO item)
+        public Filial? BuscarUnico(Filial item)
         {
-            throw new NotImplementedException();
+            return _filialDAO.BuscarUnico(item);
         }
 
-        public List<FilialDTO> BuscarVarios()
+        public List<Filial> BuscarVarios()
         {
-            throw new NotImplementedException();
+            return _filialDAO.BuscarVarios();
         }
 
-        public bool Remover(FilialDTO item)
+        public bool Remover(Filial item)
         {
-            throw new NotImplementedException();
+            return _filialDAO.Remover(item);
         }
     }
 }

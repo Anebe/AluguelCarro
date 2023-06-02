@@ -26,61 +26,61 @@ namespace AluguelCarro.src.Controller
 
         
         //CLIENTE MÉTODOS --------------------------------------------------------------
-        public bool AdicionarCliente(ClienteDTO cliente)
+        public bool AdicionarCliente(Cliente cliente)
         {
             return _clienteService.Adicionar(cliente);
         }
 
-        public bool AtualizarCliente(ClienteDTO cliente)
+        public bool AtualizarCliente(Cliente cliente)
         {
             return _clienteService.Atualizar(cliente);
         }
 
-        public ClienteDTO BuscarCliente(ClienteDTO cliente)
+        public Cliente BuscarCliente(Cliente cliente)
         {
             return _clienteService.BuscarUnico(cliente);
         }
 
-        public List<ClienteDTO> BuscarClientes()
+        public List<Cliente> BuscarClientes()
         {
             return _clienteService.BuscarVarios();
         }
 
-        public bool RemoverCliente(ClienteDTO cliente)
+        public bool RemoverCliente(Cliente cliente)
         {
             return _clienteService.Remover(cliente);
         }
 
 
         //ALUGUEL MÉTODOS --------------------------------------------------------------
-        public bool AdicionarAluguel(AluguelDTO aluguel)
+        public bool AdicionarAluguel(Aluguel aluguel)
         {
             return _aluguelService.Adicionar(aluguel);
         }
 
-        public bool AtualizarAluguel(AluguelDTO aluguel)
+        public bool AtualizarAluguel(Aluguel aluguel)
         {
             return _aluguelService.Atualizar(aluguel);
         }
 
-        public AluguelDTO? BuscarAluguel(AluguelDTO aluguel)
+        public Aluguel? BuscarAluguel(Aluguel aluguel)
         {
             return _aluguelService.BuscarUnico(aluguel);
         }
 
-        public List<AluguelDTO> BuscarAlugueis()
+        public List<Aluguel> BuscarAlugueis()
         {
             return _aluguelService.BuscarVarios();
         }
 
 
         //CARRO MÉTODOS --------------------------------------------------------------
-        public CarroDTO BuscarCarro(CarroDTO carro)
+        public Carro BuscarCarro(Carro carro)
         {
             return _carroService.BuscarUnico(carro);
         }
         
-        public List<CarroDTO> BuscarCarros()
+        public List<Carro> BuscarCarros()
         {
             return _carroService.BuscarVarios();
         }

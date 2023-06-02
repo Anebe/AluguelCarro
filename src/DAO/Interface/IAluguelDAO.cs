@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DAO.Interface
 {
-    internal interface IAluguelDAO : IGenericCRUD<AluguelDTO>
+    internal interface IAluguelDAO : IGenericCRUD<Aluguel>
     {
 
     }

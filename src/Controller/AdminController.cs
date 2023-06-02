@@ -22,7 +22,7 @@ namespace AluguelCarro.src.Controller
 
         //FUNCIONÁRIO MÉTODOS --------------------------------------------------------------
 
-        public bool AdicionarFuncionario(FuncionarioDTO funcionario)
+        public bool AdicionarFuncionario(Funcionario funcionario)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarFuncionario(FuncionarioDTO funcionario)
+        public bool AtualizarFuncionario(Funcionario funcionario)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public FuncionarioDTO BuscarFuncionario(FuncionarioDTO funcionario)
+        public Funcionario BuscarFuncionario(Funcionario funcionario)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<FuncionarioDTO> BuscarFuncionarios()
+        public List<Funcionario> BuscarFuncionarios()
         {
             try
             {
@@ -74,7 +74,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverFuncionario(FuncionarioDTO funcionario)
+        public bool RemoverFuncionario(Funcionario funcionario)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace AluguelCarro.src.Controller
 
         //FILIAL MÉTODOS --------------------------------------------------------------
 
-        public bool AdicionarFuncionario(FilialDTO filial)
+        public bool AdicionarFuncionario(Filial filial)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarFilial(FilialDTO filial)
+        public bool AtualizarFilial(Filial filial)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public FilialDTO BuscarFilial(FilialDTO filial)
+        public Filial BuscarFilial(Filial filial)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<FilialDTO> BuscarFilials()
+        public List<Filial> BuscarFilials()
         {
             try
             {

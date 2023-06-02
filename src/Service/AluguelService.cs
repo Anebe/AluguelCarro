@@ -22,29 +22,29 @@ namespace AluguelCarro.src.Service
 
 
         //CRUD ------------------------------------------------
-        public bool Adicionar(AluguelDTO item)
+        public bool Adicionar(Aluguel item)
         {
-            throw new NotImplementedException();
+            return _aluguelDAO.Adicionar(item);
         }
 
-        public bool Atualizar(AluguelDTO item)
+        public bool Atualizar(Aluguel item)
         {
-            throw new NotImplementedException();
+            return _aluguelDAO.Atualizar(item);
         }
 
-        public AluguelDTO? BuscarUnico(AluguelDTO item)
+        public Aluguel? BuscarUnico(Aluguel item)
         {
-            throw new NotImplementedException();
+            return _aluguelDAO.BuscarUnico(item);
         }
 
-        public List<AluguelDTO> BuscarVarios()
+        public List<Aluguel> BuscarVarios()
         {
-            throw new NotImplementedException();
+            return _aluguelDAO.BuscarVarios();
         }
 
-        public bool Remover(AluguelDTO item)
+        public bool Remover(Aluguel item)
         {
-            throw new NotImplementedException();
+            return _aluguelDAO.Remover(item);
         }
 
 

@@ -24,7 +24,7 @@ namespace AluguelCarro.src.Controller
 
 
         //CARRO MÉTODOS --------------------------------------------------------------
-        public bool AdicionarCarro(CarroDTO carro)
+        public bool AdicionarCarro(Carro carro)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool AtualizarCarro(CarroDTO carro)
+        public bool AtualizarCarro(Carro carro)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public CarroDTO BuscarCarro(CarroDTO carro)
+        public Carro BuscarCarro(Carro carro)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public List<CarroDTO> BuscarCarroS()
+        public List<Carro> BuscarCarroS()
         {
             try
             {
@@ -76,7 +76,7 @@ namespace AluguelCarro.src.Controller
             }
         }
 
-        public bool RemoverCarro(CarroDTO carro)
+        public bool RemoverCarro(Carro carro)
         {
             try
             {

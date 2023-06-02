@@ -1,6 +1,7 @@
 ﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.DTO;
 using AluguelCarro.src.Service.Interface;
+using AluguelCarro.src.Validator;
 
 namespace AluguelCarro.src.Service
 {
@@ -15,36 +16,68 @@ namespace AluguelCarro.src.Service
 
 
         //CRUD-------------------------------
-        public bool Adicionar(ClienteDTO item)
+        public bool Adicionar(Cliente item)
         {
-            return _clienteDAO.Adicionar(item);
+            try
+            {
+                ClienteValidator.Validar(item);
+                return _clienteDAO.Adicionar(item);
+            }catch(ArgumentException e)
+            {
+                throw e;
+            }
             
         }
 
-        public bool Atualizar(ClienteDTO item)
+        public bool Atualizar(Cliente item)
         {
-            return _clienteDAO.Atualizar(item);
-            
+            try
+            {
+                ClienteValidator.Validar(item);
+                return _clienteDAO.Atualizar(item);
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
         }
 
-        public ClienteDTO? BuscarUnico(ClienteDTO item)
+        public Cliente? BuscarUnico(Cliente item)
         {
-            return _clienteDAO.BuscarUnico(item);
+            try
+            {
+                ClienteValidator.Validar(item);
+                return _clienteDAO.BuscarUnico(item);
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
         }
 
-        public List<ClienteDTO> BuscarVarios()
+        public List<Cliente> BuscarVarios()
         {
-            return _clienteDAO.BuscarVarios();
-            
+            try
+            {
+                return _clienteDAO.BuscarVarios();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public bool Remover(ClienteDTO item)
+        public bool Remover(Cliente item)
         {
-            return _clienteDAO.Remover(item);
-            
+            try
+            {
+                ClienteValidator.Validar(item);
+                return _clienteDAO.Remover(item);
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
         }
-
     }
-
-
 }

@@ -3,7 +3,7 @@ using AluguelCarro.src.Util;
 
 namespace AluguelCarro.src.Service.Interface
 {
-    internal interface IFuncionarioService : IGenericCRUD<FuncionarioDTO>
+    internal interface IFuncionarioService : IGenericCRUD<Funcionario>
     {
 
     }

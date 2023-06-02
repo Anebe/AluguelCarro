@@ -1,10 +1,11 @@
 ﻿using AluguelCarro.src.DAO;
 using AluguelCarro.src.DAO.Interface;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Service;
 using AluguelCarro.src.Service.Interface;
 using AluguelCarro.src.Util;
 using Microsoft.Extensions.DependencyInjection;
+using MySqlConnector;
+using System.Data;
 
 namespace AluguelCarro
 {
@@ -24,7 +25,7 @@ namespace AluguelCarro
 
             //serviceCollection.AddSingleton<IConfiguration>(config);
 
-            //string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
+            string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
 
 
             serviceCollection.AddSingleton<IFuncionarioService, FuncionarioService>();
@@ -37,10 +38,10 @@ namespace AluguelCarro
             serviceCollection.AddSingleton<ICarroDAO, CarroDAO>();
             serviceCollection.AddSingleton<IAluguelDAO, AluguelDAO>();
 
-
             //serviceCollection.AddSingleton(typeof(IGenericDAO<>), typeof(GenericDAO<>));
-            //serviceCollection.AddSingleton(typeof(IMySqlStringFactory<>), typeof(MySqlStringFactory<>));
-            //serviceCollection.AddSingleton<IDbConnection>(new MySqlConnection(connectionString));
+
+            serviceCollection.AddSingleton(typeof(IMySqlStringFactory<>), typeof(MySqlStringFactory<>));
+            serviceCollection.AddSingleton<IDbConnection>(new MySqlConnection(connectionString));
 
             return serviceCollection.BuildServiceProvider();
         }

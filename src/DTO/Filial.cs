@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DTO
 {
-    public class FilialDTO
+    public class Filial
     {
-        private List<FuncionarioDTO> funcionarios;
+        private List<Funcionario> funcionarios;
         
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -18,8 +18,8 @@ namespace AluguelCarro.src.DTO
         public string Estado { get; set; }
         
 
-        public List<FuncionarioDTO> GetFuncionarios() { return funcionarios; }
-        public void SetFuncionarios(List<FuncionarioDTO> funcionarios)
+        public List<Funcionario> GetFuncionarios() { return funcionarios; }
+        public void SetFuncionarios(List<Funcionario> funcionarios)
         {
             this.funcionarios = funcionarios;
         }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AluguelCarro.src.DTO
 {
-    public class ClienteDTO : Pessoa
+    public class Cliente : Pessoa
     {
         public int Id { get; set; }
         public string Cnh { get; set; }

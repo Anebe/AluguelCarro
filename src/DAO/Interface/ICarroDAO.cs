@@ -1,5 +1,4 @@
 ﻿using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Util;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DAO.Interface
 {
-    internal interface ICarroDAO : IGenericCRUD<CarroDTO>
+    internal interface ICarroDAO : IGenericCRUD<Carro>
     {
         //public List<Carro> BuscaFilterBy(decimal? minPrice, decimal? maxPrice);
     }

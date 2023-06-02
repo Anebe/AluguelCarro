@@ -11,7 +11,7 @@ namespace AluguelCarro.src.Util
     {
         public string GetInsertSql(string? exceptFor = null);
 
-        public string GetSelectSql(string? attributesCondition = null);
+        public string GetSelectSql(string[]? attributesCondition = null);
 
         public string GetUpdateSql(string? attributesCondition = null);
 

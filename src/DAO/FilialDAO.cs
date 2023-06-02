@@ -14,43 +14,43 @@ namespace AluguelCarro.src.DAO
     internal class FilialDAO : IFilialDAO
     {
         private IDbConnection _dbConnection;
-        private IMySqlStringFactory<FilialDTO> _sqlFactory;
+        private IMySqlStringFactory<Filial> _sqlFactory;
 
-        public FilialDAO(IDbConnection dbConnection, IMySqlStringFactory<FilialDTO> sqlFactory)
+        public FilialDAO(IDbConnection dbConnection, IMySqlStringFactory<Filial> sqlFactory)
         {
             _dbConnection = dbConnection;
             _sqlFactory = sqlFactory;
         }
 
-        public bool Adicionar(FilialDTO item)
+        public bool Adicionar(Filial item)
         {
             string sql = _sqlFactory.GetInsertSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public bool Atualizar(FilialDTO item)
+        public bool Atualizar(Filial item)
         {
             string sql = _sqlFactory.GetUpdateSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public FilialDTO? BuscarUnico(FilialDTO item)
+        public Filial? BuscarUnico(Filial item)
         {
-            string sql = _sqlFactory.GetSelectSql();
-            var filial = _dbConnection.QuerySingle<FilialDTO>(sql, item);
+            string sql = _sqlFactory.GetSelectSql(new string[] { "Id" });
+            var filial = _dbConnection.QuerySingle<Filial>(sql, item);
             return filial;
         }
 
-        public List<FilialDTO> BuscarVarios()
+        public List<Filial> BuscarVarios()
         {
             string sql = _sqlFactory.GetSelectSql();
-            var filial = _dbConnection.Query<FilialDTO>(sql);
+            var filial = _dbConnection.Query<Filial>(sql);
             return filial.ToList();
         }
 
-        public bool Remover(FilialDTO item)
+        public bool Remover(Filial item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");
             int row = _dbConnection.Execute(sql, item);

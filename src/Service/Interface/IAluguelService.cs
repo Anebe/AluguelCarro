@@ -1,5 +1,4 @@
 ﻿using AluguelCarro.src.DTO;
-using AluguelCarro.src.Entity;
 using AluguelCarro.src.Util;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.Service.Interface
 {
-    internal interface IAluguelService : IGenericCRUD<AluguelDTO>
+    internal interface IAluguelService : IGenericCRUD<Aluguel>
     {
     }
 }

@@ -5,7 +5,7 @@ namespace AluguelCarro.src.Validator
 {
     public class ClienteValidator
     {
-        public static bool Validar(ClienteDTO cliente)
+        public static bool Validar(Cliente cliente)
         {
             List<ArgumentException> erros = new List<ArgumentException>();
 
@@ -51,7 +51,7 @@ namespace AluguelCarro.src.Validator
         public static ArgumentException ValidarDataNascimento(DateTime dataNascimento)
         {
             int idade = DateTime.Now.Year - dataNascimento.Year;
-            if (idade >= 18)
+            if (idade >= 18 && (dataNascimento != DateTime.MaxValue || dataNascimento != DateTime.MinValue))
             {
                 return null;
             }

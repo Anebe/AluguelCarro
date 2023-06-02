@@ -2,55 +2,49 @@
 using AluguelCarro.src.DTO;
 using AluguelCarro.src.Util;
 using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace AluguelCarro.src.DAO
 {
     internal class FuncionarioDAO : IFuncionarioDAO
     {
         private IDbConnection _dbConnection;
-        private IMySqlStringFactory<FuncionarioDTO> _sqlFactory;
+        private IMySqlStringFactory<Funcionario> _sqlFactory;
 
-        public FuncionarioDAO(IDbConnection dbConnection, IMySqlStringFactory<FuncionarioDTO> sqlFactory)
+        public FuncionarioDAO(IDbConnection dbConnection, IMySqlStringFactory<Funcionario> sqlFactory)
         {
             _dbConnection = dbConnection;
             _sqlFactory = sqlFactory;
         }
 
-        public bool Adicionar(FuncionarioDTO item)
+        public bool Adicionar(Funcionario item)
         {
             string sql = _sqlFactory.GetInsertSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public bool Atualizar(FuncionarioDTO item)
+        public bool Atualizar(Funcionario item)
         {
             string sql = _sqlFactory.GetUpdateSql();
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
-        public FuncionarioDTO? BuscarUnico(FuncionarioDTO item)
+        public Funcionario? BuscarUnico(Funcionario item)
         {
-            string sql = _sqlFactory.GetSelectSql();
-            var funcionario = _dbConnection.QuerySingle<FuncionarioDTO>(sql, item);
+            string sql = _sqlFactory.GetSelectSql(new string[] { "Id" });
+            var funcionario = _dbConnection.QuerySingle<Funcionario>(sql, item);
             return funcionario;
         }
 
-        public List<FuncionarioDTO> BuscarVarios()
+        public List<Funcionario> BuscarVarios()
         {
             string sql = _sqlFactory.GetSelectSql();
-            var funcionario = _dbConnection.Query<FuncionarioDTO>(sql);
+            var funcionario = _dbConnection.Query<Funcionario>(sql);
             return funcionario.ToList();
         }
 
-        public bool Remover(FuncionarioDTO item)
+        public bool Remover(Funcionario item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");
             int row = _dbConnection.Execute(sql, item);

@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DTO
 {
-    public class CarroDTO
+    public class Grupo
     {
         public int Id { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-
-        public GrupoDTO GrupoCarro { get; set; }
-        public FilialDTO FilialAssociado { get; set; }
+        public string Nome { get; set; }
+        public decimal ValorDiaria { get; set; }
     }
 }

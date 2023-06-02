@@ -14,29 +14,29 @@ namespace AluguelCarro.src.Service
             _carroDAO = carroDAO;
         }
 
-        public bool Adicionar(CarroDTO item)
+        public bool Adicionar(Carro item)
         {
-            throw new NotImplementedException();
+            return _carroDAO.Adicionar(item);
         }
 
-        public bool Atualizar(CarroDTO item)
+        public bool Atualizar(Carro item)
         {
-            throw new NotImplementedException();
+            return _carroDAO.Atualizar(item);
         }
 
-        public CarroDTO? BuscarUnico(CarroDTO item)
+        public Carro? BuscarUnico(Carro item)
         {
-            throw new NotImplementedException();
+            return _carroDAO.BuscarUnico(item);
         }
 
-        public List<CarroDTO> BuscarVarios()
+        public List<Carro> BuscarVarios()
         {
-            throw new NotImplementedException();
+            return _carroDAO.BuscarVarios();
         }
 
-        public bool Remover(CarroDTO item)
+        public bool Remover(Carro item)
         {
-            throw new NotImplementedException();
+            return _carroDAO.Remover(item);
         }
     }
 }
