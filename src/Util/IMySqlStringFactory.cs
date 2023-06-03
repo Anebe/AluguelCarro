@@ -17,6 +17,6 @@ namespace AluguelCarro.src.Util
 
         public string GetDeleteSql(string attributesCondition);
 
-
+        public string[] getNotNullPropriety(T item);
     }
 }

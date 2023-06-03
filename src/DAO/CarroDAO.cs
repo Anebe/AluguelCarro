@@ -2,12 +2,8 @@
 using AluguelCarro.src.DTO;
 using AluguelCarro.src.Util;
 using Dapper;
-using System;
-using System.Collections.Generic;
+using MySqlConnector;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DAO
 {
@@ -24,9 +20,24 @@ namespace AluguelCarro.src.DAO
 
         public bool Adicionar(Carro item)
         {
-            string sql = _sqlFactory.GetInsertSql();
-            int row = _dbConnection.Execute(sql, item);
-            return row > 0 && row < 2;
+            try
+            {
+                string sql = _sqlFactory.GetInsertSql();
+                int row = _dbConnection.Execute(sql, item);
+                return row > 0 && row < 2;
+            }
+             catch (MySqlException e)
+            {
+                if (e.Number == 1062)// cpf duplicado
+                {
+                    throw new Exception("Placa já cadastrado por outro Carro!");
+                }
+
+            } catch (Exception e)
+            {
+
+            }
+            return false;
         }
 
         public bool Atualizar(Carro item)

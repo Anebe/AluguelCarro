@@ -27,22 +27,14 @@ DROP TABLE IF EXISTS `aluguel`;
 CREATE TABLE `aluguel` (
   `id_cliente` int NOT NULL,
   `id_carro` int NOT NULL,
-  `total` decimal(14,2) DEFAULT NULL,
-  `id_status` int NOT NULL,
+  `total` decimal(14,2) NOT NULL,
   `dtInicio` date NOT NULL,
-  `dtFim` date DEFAULT NULL,
-  `id_filial_devolucao` int NOT NULL,
-  `id_filial_busca` int NOT NULL,
-  PRIMARY KEY (`id_carro`,`id_cliente`),
+  `dtFim` date NOT NULL,
+  PRIMARY KEY (`id_cliente`,`id_carro`),
   KEY `GER345T_idx` (`id_cliente`),
-  KEY `UR57E4_idx` (`id_status`),
-  KEY `H6Y4U5_idx` (`id_filial_busca`),
-  KEY `H554U57_idx` (`id_filial_devolucao`),
-  CONSTRAINT `EY64E43` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`),
-  CONSTRAINT `GER345T` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
-  CONSTRAINT `H554U57` FOREIGN KEY (`id_filial_devolucao`) REFERENCES `filial` (`id`),
-  CONSTRAINT `H6Y4U5` FOREIGN KEY (`id_filial_busca`) REFERENCES `filial` (`id`),
-  CONSTRAINT `UR57E4` FOREIGN KEY (`id_status`) REFERENCES `aluguelstatus` (`id`)
+  KEY `6YR546_idx` (`id_carro`),
+  CONSTRAINT `6YR546` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`),
+  CONSTRAINT `GER345T` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,30 +44,8 @@ CREATE TABLE `aluguel` (
 
 LOCK TABLES `aluguel` WRITE;
 /*!40000 ALTER TABLE `aluguel` DISABLE KEYS */;
+INSERT INTO `aluguel` VALUES (1,4,748.80,'2023-05-01','2023-06-02');
 /*!40000 ALTER TABLE `aluguel` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `aluguelstatus`
---
-
-DROP TABLE IF EXISTS `aluguelstatus`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `aluguelstatus` (
-  `id` int NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `aluguelstatus`
---
-
-LOCK TABLES `aluguelstatus` WRITE;
-/*!40000 ALTER TABLE `aluguelstatus` DISABLE KEYS */;
-/*!40000 ALTER TABLE `aluguelstatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -86,17 +56,13 @@ DROP TABLE IF EXISTS `carro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carro` (
-  `id` int NOT NULL,
-  `id_grupo` int NOT NULL,
-  `marca` varchar(45) DEFAULT NULL,
-  `modelo` varchar(45) DEFAULT NULL,
-  `id_filial` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FEW35T4_idx` (`id_grupo`),
-  KEY `G547U5_idx` (`id_filial`),
-  CONSTRAINT `FEW35T4` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`id`),
-  CONSTRAINT `G547U5` FOREIGN KEY (`id_filial`) REFERENCES `filial` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `marca` varchar(45) NOT NULL,
+  `modelo` varchar(45) NOT NULL,
+  `placa` varchar(45) NOT NULL,
+  `valor_diaria` decimal(5,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +71,7 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
+INSERT INTO `carro` VALUES (4,'qualquer','otomodelo','r3h82-3j',23.40);
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,18 +84,21 @@ DROP TABLE IF EXISTS `cliente`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(250) DEFAULT NULL,
-  `cpf` varchar(14) DEFAULT NULL,
-  `cnh` varchar(11) DEFAULT NULL,
-  `dtNascimento` date DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `rg` varchar(45) DEFAULT NULL,
-  `telefone` varchar(45) DEFAULT NULL,
-  `renach` varchar(45) DEFAULT NULL,
+  `nome` varchar(250) NOT NULL,
+  `cpf` varchar(14) NOT NULL,
+  `cnh` varchar(11) NOT NULL,
+  `dtNascimento` date NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `rg` varchar(45) NOT NULL,
+  `telefone` varchar(45) NOT NULL,
+  `renach` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `cpf_UNIQUE` (`cpf`),
+  UNIQUE KEY `cnh_UNIQUE` (`cnh`),
+  UNIQUE KEY `rg_UNIQUE` (`rg`),
+  UNIQUE KEY `renach_UNIQUE` (`renach`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,121 +107,8 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (7,'0000','0000','000','2023-05-21','@000','K','(98)K','K'),(8,'f','f','f','2023-05-19','@f','f','(98)988','renach'),(11,'uuuu','uuuu','uuuu','2023-05-20','@uuuu','uuuu','(98)uuuu','uuuu'),(12,'K','K','K','2023-05-21','@K','K','(98)K','K'),(13,'t',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(14,'j',NULL,NULL,'0001-01-01',NULL,NULL,NULL,NULL),(16,NULL,'y',NULL,'0001-01-01',NULL,NULL,NULL,NULL);
+INSERT INTO `cliente` VALUES (1,'gab','123.123.123-12','1234','2001-10-08','gab@gmail.com','123456789-1','(98)91234-1234','45678');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `filial`
---
-
-DROP TABLE IF EXISTS `filial`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `filial` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) DEFAULT NULL,
-  `endereco` varchar(200) DEFAULT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  `cidade` varchar(50) DEFAULT NULL,
-  `estado` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `filial`
---
-
-LOCK TABLES `filial` WRITE;
-/*!40000 ALTER TABLE `filial` DISABLE KEYS */;
-INSERT INTO `filial` VALUES (1,'qqeq','qeqeq','qeqeq','qeeq','qeqe'),(2,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `filial` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `funcionario`
---
-
-DROP TABLE IF EXISTS `funcionario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `funcionario` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) DEFAULT NULL,
-  `cargo` varchar(45) DEFAULT NULL,
-  `salario` decimal(10,2) DEFAULT NULL,
-  `dtContratacao` date DEFAULT NULL,
-  `filial_id` int NOT NULL,
-  `cpf` varchar(14) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `rg` varchar(45) DEFAULT NULL,
-  `telefone` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `rg_UNIQUE` (`rg`),
-  UNIQUE KEY `cpf_UNIQUE` (`cpf`),
-  KEY `F436Y5_idx` (`filial_id`),
-  CONSTRAINT `F436Y5` FOREIGN KEY (`filial_id`) REFERENCES `filial` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `funcionario`
---
-
-LOCK TABLES `funcionario` WRITE;
-/*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'123',NULL,0.00,'0001-01-01',1,NULL,NULL,NULL,NULL),(2,'123',NULL,0.00,'0001-01-01',1,NULL,NULL,NULL,NULL),(3,'123',NULL,0.00,'0001-01-01',1,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `grupo`
---
-
-DROP TABLE IF EXISTS `grupo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `grupo` (
-  `id` int NOT NULL,
-  `nome` varchar(1) NOT NULL,
-  `valorDiaria` decimal(3,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `grupo`
---
-
-LOCK TABLES `grupo` WRITE;
-/*!40000 ALTER TABLE `grupo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `grupo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `login`
---
-
-DROP TABLE IF EXISTS `login`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `login` (
-  `id_funcionario` int NOT NULL,
-  `usuario` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL,
-  PRIMARY KEY (`id_funcionario`),
-  CONSTRAINT `346HNHS` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `login`
---
-
-LOCK TABLES `login` WRITE;
-/*!40000 ALTER TABLE `login` DISABLE KEYS */;
-/*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -263,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-25 17:02:58
+-- Dump completed on 2023-06-02 23:22:22

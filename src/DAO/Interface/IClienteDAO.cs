@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AluguelCarro.src.DAO.Interface
 {
-    internal interface IClienteDAO : IGenericCRUD<Cliente>, ISelectCommandString<Cliente>
+    internal interface IClienteDAO : IGenericCRUD<Cliente>
     {
         //public List<Cliente> getClientesInativos(DateTime desdeDe);
     }

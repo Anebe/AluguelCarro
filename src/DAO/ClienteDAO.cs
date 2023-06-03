@@ -2,6 +2,7 @@
 using AluguelCarro.src.DTO;
 using AluguelCarro.src.Util;
 using Dapper;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,9 +26,23 @@ namespace AluguelCarro.src.DAO
 
         public bool Adicionar(Cliente item)
         {
-            string sql = _sqlFactory.GetInsertSql("Id");
-            int row = _dbConnection.Execute(sql, item);
-            return row > 0 && row < 2;
+            try
+            {
+                string sql = _sqlFactory.GetInsertSql("Id");
+                int row = _dbConnection.Execute(sql, item);
+                return row > 0 && row < 2;
+            } catch (MySqlException e)
+            {
+                if(e.Number == 1062)// cpf duplicado
+                {
+                    throw new Exception("Cpf já cadastrado por outro Cliente!");
+                }
+
+            } catch (Exception e)
+            {
+
+            }
+            return false;
         }
 
         public bool Atualizar(Cliente item)
@@ -39,7 +54,7 @@ namespace AluguelCarro.src.DAO
 
         public Cliente? BuscarUnico(Cliente item)
         {
-            var atributesCondiction = getNotNullPropriety(item);
+            var atributesCondiction = _sqlFactory.getNotNullPropriety(item);
             string sql = _sqlFactory.GetSelectSql(atributesCondiction);
             var cliente = _dbConnection.QuerySingle<Cliente>(sql, item);
             return cliente;
@@ -52,18 +67,6 @@ namespace AluguelCarro.src.DAO
             return cliente.ToList();
         }
 
-        public Cliente getItemBySql(string sql, Cliente item)
-        {
-            var cliente = _dbConnection.QuerySingle<Cliente>(sql, item);
-            return cliente;
-        }
-
-        public List<Cliente> getItensBySql(string sql, Cliente filter)
-        {
-            var cliente = _dbConnection.Query<Cliente>(sql,filter);
-            return cliente.ToList();
-        }
-
         public bool Remover(Cliente item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");
@@ -71,15 +74,6 @@ namespace AluguelCarro.src.DAO
             return row > 0 && row < 2;
         }
 
-        private string[] getNotNullPropriety(Cliente cliente)
-        {
-            PropertyInfo[] properties = typeof(Cliente).GetProperties();
-
-            Cliente comparar = new Cliente();
-            var nonNullProperties = properties.Where(p => p.GetValue(cliente) != null && !p.GetValue(cliente).Equals(p.GetValue(comparar)));
-
-
-            return nonNullProperties.Select(p => p.Name).ToArray();
-        }
+        
     }
 }

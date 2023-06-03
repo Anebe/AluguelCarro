@@ -27,16 +27,16 @@ namespace AluguelCarro
 
             string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
 
-
-            serviceCollection.AddSingleton<IFuncionarioService, FuncionarioService>();
             serviceCollection.AddSingleton<IClienteService, ClienteService>();
             serviceCollection.AddSingleton<ICarroService, CarroService>();
             serviceCollection.AddSingleton<IAluguelService, AluguelService>();
+            
 
-            serviceCollection.AddSingleton<IFuncionarioDAO, FuncionarioDAO>();
             serviceCollection.AddSingleton<IClienteDAO, ClienteDAO>();
             serviceCollection.AddSingleton<ICarroDAO, CarroDAO>();
             serviceCollection.AddSingleton<IAluguelDAO, AluguelDAO>();
+
+            serviceCollection.AddSingleton<ISelectCommandString, SelectCommandString>();
 
             //serviceCollection.AddSingleton(typeof(IGenericDAO<>), typeof(GenericDAO<>));
 

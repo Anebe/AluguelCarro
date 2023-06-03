@@ -1,29 +1,35 @@
 ﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AluguelCarro.src.Util;
 using AluguelCarro.src.DTO;
+using AluguelCarro.src.Util;
 
 namespace AluguelCarro.src.Service
 {
     internal class AluguelService : IAluguelService
     {
         private IAluguelDAO _aluguelDAO;
-
-        public AluguelService(IAluguelDAO aluguelDAO)
+        private ISelectCommandString _sql;
+        public AluguelService(IAluguelDAO aluguelDAO, ISelectCommandString sql)
         {
             _aluguelDAO = aluguelDAO;
+            _sql = sql;
         }
 
 
         //CRUD ------------------------------------------------
         public bool Adicionar(Aluguel item)
         {
+            List<Aluguel> alugueisCarros = _sql.getItensBySql<Aluguel>("select * from aluguel where id_carro = @Id_carro and dtInicio >= @DtInicio and dtFim <= @DtFim", item);
+            
+            if(alugueisCarros.Count > 0)
+            {
+                return false;
+            }
+
+            var diaria = item.getCarro().Valor_diaria;
+            TimeSpan qtdDias = item.DtFim - item.DtInicio;
+            item.Total = diaria * qtdDias.Days;
+
             return _aluguelDAO.Adicionar(item);
         }
 

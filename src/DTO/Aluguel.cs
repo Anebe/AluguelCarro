@@ -7,16 +7,12 @@ namespace AluguelCarro.src.DTO
 
         private Cliente cliente;
         private Carro carro;
-        private Filial filialDevolucao;
-        private Filial filialBusca;
 
+        public int Id { get; set; }
         public int Id_cliente { get => cliente.Id; }
         public int Id_carro { get => carro.Id; }
-        public Estado Id_status { get; set; }
-        public DateTime DataInicio { get; set; }
-        public DateTime DataFim { get; set; }
-        public int Id_filial_devolucao { get => filialDevolucao.Id; }
-        public int Id_filial_busca { get => filialBusca.Id; }
+        public DateTime DtInicio { get; set; }
+        public DateTime DtFim { get; set; }
         public decimal Total { get; set; }
 
         public Cliente GetCliente()
@@ -38,26 +34,5 @@ namespace AluguelCarro.src.DTO
         {
             this.carro = carro;
         }
-
-        public Filial GetFilialDevolucao()
-        {
-            return filialDevolucao;
-        }
-
-        public void SetFilialDevolucao(Filial filialDevolucao)
-        {
-            this.filialDevolucao = filialDevolucao;
-        }
-
-        public Filial GetFilialBusca()
-        {
-            return filialBusca;
-        }
-
-        public void SetFilialBusca(Filial filialBusca)
-        {
-            this.filialBusca = filialBusca;
-        }
-
     }
 }

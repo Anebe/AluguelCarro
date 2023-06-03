@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AluguelCarro.src.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -114,6 +115,16 @@ namespace AluguelCarro.src.Util
                 proprieties.Add(item.Name);
 
             }
+        }
+
+        public string[] getNotNullPropriety(T item)
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties();
+
+            T comparar = (T)Activator.CreateInstance(typeof(T));
+            var nonNullProperties = properties.Where(p => p.GetValue(item) != null && !p.GetValue(item).Equals(p.GetValue(comparar)));
+
+            return nonNullProperties.Select(p => p.Name).ToArray();
         }
 
         /*public string GetSelectSql(PropertyInfo? attributesCondition = null)

@@ -1,6 +1,8 @@
 ﻿using AluguelCarro.src.DTO;
+using AluguelCarro.src.DTO.VO;
 using AluguelCarro.src.Service.Interface;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 namespace AluguelCarro.src.Controller
@@ -12,7 +14,6 @@ namespace AluguelCarro.src.Controller
         private IClienteService _clienteService;
         private IAluguelService _aluguelService;
         private ICarroService _carroService;
-        private IFuncionarioService _funcionarioService;
 
         public AtendimentoController(IServiceProvider serviceProvider)
         {
@@ -21,7 +22,6 @@ namespace AluguelCarro.src.Controller
             _clienteService = _serviceProvider.GetRequiredService<IClienteService>();
             _aluguelService = _serviceProvider.GetRequiredService<IAluguelService>();
             _carroService = _serviceProvider.GetRequiredService<ICarroService>();
-            _funcionarioService = _serviceProvider.GetRequiredService<IFuncionarioService>();
         }
 
         
@@ -53,14 +53,47 @@ namespace AluguelCarro.src.Controller
 
 
         //ALUGUEL MÉTODOS --------------------------------------------------------------
-        public bool AdicionarAluguel(Aluguel aluguel)
+        private bool verificarAluguel(AluguelVO aluguel, Cliente cliente, Carro carro)
         {
-            return _aluguelService.Adicionar(aluguel);
+            if (aluguel.DataFim < aluguel.DataInicio ||
+                cliente == null ||
+                carro == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-        public bool AtualizarAluguel(Aluguel aluguel)
+        public bool AdicionarAluguel(AluguelVO aluguel)
         {
-            return _aluguelService.Atualizar(aluguel);
+            var item = new Aluguel() { DtFim = aluguel.DataFim, DtInicio = aluguel.DataInicio };
+
+            var carro = _carroService.BuscarUnico(new Carro() { Id = aluguel.Id_carro });
+            var cliente = _clienteService.BuscarUnico(new Cliente() { Id = aluguel.Id_cliente });
+
+            if(verificarAluguel(aluguel, cliente, carro))
+            {
+                item.SetCarro(carro);
+                item.SetCliente(cliente);
+
+                return _aluguelService.Adicionar(item);
+            }
+            return false;
+        }
+
+        public bool AtualizarAluguel(AluguelVO aluguel)
+        {
+            var item = new Aluguel() { DtFim = aluguel.DataFim, DtInicio = aluguel.DataInicio };
+
+            var carro = _carroService.BuscarUnico(new Carro() { Id = aluguel.Id_carro });
+            var cliente = _clienteService.BuscarUnico(new Cliente() { Id = aluguel.Id_cliente });
+
+            if (verificarAluguel(aluguel, cliente, carro))
+            {
+                return _aluguelService.Atualizar(item);
+            }
+            return false;
         }
 
         public Aluguel? BuscarAluguel(Aluguel aluguel)
@@ -75,15 +108,70 @@ namespace AluguelCarro.src.Controller
 
 
         //CARRO MÉTODOS --------------------------------------------------------------
+        public bool AdicionarCarro(Carro carro)
+        {
+            try
+            {
+                return _carroService.Adicionar(carro);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public bool AtualizarCarro(Carro carro)
+        {
+            try
+            {
+                return _carroService.Atualizar(carro);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
         public Carro BuscarCarro(Carro carro)
         {
-            return _carroService.BuscarUnico(carro);
+            try
+            {
+                return _carroService.BuscarUnico(carro);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
         }
-        
-        public List<Carro> BuscarCarros()
+
+        public List<Carro> BuscarCarroS()
         {
-            return _carroService.BuscarVarios();
+            try
+            {
+                return _carroService.BuscarVarios();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
         }
-        
+
+        public bool RemoverCarro(Carro carro)
+        {
+            try
+            {
+                return _carroService.Remover(carro);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
     }
 }

@@ -10,6 +10,5 @@ namespace AluguelCarro.src.DAO.Interface
 {
     internal interface ICarroDAO : IGenericCRUD<Carro>
     {
-        //public List<Carro> BuscaFilterBy(decimal? minPrice, decimal? maxPrice);
     }
 }

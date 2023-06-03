@@ -50,6 +50,18 @@ namespace AluguelCarro.src.DAO
             return aluguel.ToList();
         }
 
+        public Aluguel getItemBySql(string sql, Aluguel filter)
+        {
+            var aluguel = _dbConnection.QuerySingle<Aluguel>(sql, filter);
+            return aluguel;
+        }
+
+        public List<Aluguel> getItensBySql(string sql, Aluguel filter)
+        {
+            var aluguel = _dbConnection.Query<Aluguel>(sql, filter);
+            return aluguel.ToList();
+        }
+
         public bool Remover(Aluguel item)
         {
             string sql = _sqlFactory.GetDeleteSql("Id");

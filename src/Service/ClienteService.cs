@@ -18,66 +18,27 @@ namespace AluguelCarro.src.Service
         //CRUD-------------------------------
         public bool Adicionar(Cliente item)
         {
-            try
-            {
-                ClienteValidator.Validar(item);
-                return _clienteDAO.Adicionar(item);
-            }catch(ArgumentException e)
-            {
-                throw e;
-            }
-            
+            return _clienteDAO.Adicionar(item);
         }
 
         public bool Atualizar(Cliente item)
         {
-            try
-            {
-                ClienteValidator.Validar(item);
-                return _clienteDAO.Atualizar(item);
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
+            return _clienteDAO.Atualizar(item);
         }
 
         public Cliente? BuscarUnico(Cliente item)
         {
-            try
-            {
-                ClienteValidator.Validar(item);
-                return _clienteDAO.BuscarUnico(item);
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
+            return _clienteDAO.BuscarUnico(item);
         }
 
         public List<Cliente> BuscarVarios()
         {
-            try
-            {
-                return _clienteDAO.BuscarVarios();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return _clienteDAO.BuscarVarios();
         }
 
         public bool Remover(Cliente item)
         {
-            try
-            {
-                ClienteValidator.Validar(item);
-                return _clienteDAO.Remover(item);
-            }
-            catch (ArgumentException e)
-            {
-                throw e;
-            }
+            return _clienteDAO.Remover(item);
         }
     }
 }
