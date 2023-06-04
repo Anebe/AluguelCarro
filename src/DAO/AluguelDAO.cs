@@ -1,10 +1,5 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AluguelCarro.src.Util;
 using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.DTO;
@@ -49,6 +44,12 @@ namespace AluguelCarro.src.DAO
             var aluguel = _dbConnection.Query<Aluguel>(sql);
             return aluguel.ToList();
         }
+        public bool Remover(Aluguel item)
+        {
+            string sql = _sqlFactory.GetDeleteSql("Id");
+            int row = _dbConnection.Execute(sql, item);
+            return row > 0 && row < 2;
+        }
 
         public Aluguel getItemBySql(string sql, Aluguel filter)
         {
@@ -62,11 +63,5 @@ namespace AluguelCarro.src.DAO
             return aluguel.ToList();
         }
 
-        public bool Remover(Aluguel item)
-        {
-            string sql = _sqlFactory.GetDeleteSql("Id");
-            int row = _dbConnection.Execute(sql, item);
-            return row > 0 && row < 2;
-        }
     }
 }

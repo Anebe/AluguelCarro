@@ -25,12 +25,13 @@ DROP TABLE IF EXISTS `aluguel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aluguel` (
+  `id` int NOT NULL,
   `id_cliente` int NOT NULL,
   `id_carro` int NOT NULL,
   `total` decimal(14,2) NOT NULL,
   `dtInicio` date NOT NULL,
   `dtFim` date NOT NULL,
-  PRIMARY KEY (`id_cliente`,`id_carro`),
+  PRIMARY KEY (`id`),
   KEY `GER345T_idx` (`id_cliente`),
   KEY `6YR546_idx` (`id_carro`),
   CONSTRAINT `6YR546` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`),
@@ -44,7 +45,7 @@ CREATE TABLE `aluguel` (
 
 LOCK TABLES `aluguel` WRITE;
 /*!40000 ALTER TABLE `aluguel` DISABLE KEYS */;
-INSERT INTO `aluguel` VALUES (1,4,748.80,'2023-05-01','2023-06-02');
+INSERT INTO `aluguel` VALUES (0,1,4,748.80,'2023-05-01','2023-06-02');
 /*!40000 ALTER TABLE `aluguel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,8 @@ CREATE TABLE `carro` (
   `modelo` varchar(45) NOT NULL,
   `placa` varchar(45) NOT NULL,
   `valor_diaria` decimal(5,2) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `placa_UNIQUE` (`placa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,7 +100,7 @@ CREATE TABLE `cliente` (
   UNIQUE KEY `cnh_UNIQUE` (`cnh`),
   UNIQUE KEY `rg_UNIQUE` (`rg`),
   UNIQUE KEY `renach_UNIQUE` (`renach`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-02 23:22:22
+-- Dump completed on 2023-06-03 22:49:09

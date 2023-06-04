@@ -10,6 +10,6 @@ namespace AluguelCarro.src.Service.Interface
 {
     internal interface IClienteService : IGenericCRUD<Cliente>
     {
-        //public List<Cliente?>? getClientesInativos(DateTime desdeDe);
+
     }
 }

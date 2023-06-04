@@ -9,6 +9,7 @@ namespace AluguelCarro.src.Service
     {
         private IAluguelDAO _aluguelDAO;
         private ISelectCommandString _sql;
+
         public AluguelService(IAluguelDAO aluguelDAO, ISelectCommandString sql)
         {
             _aluguelDAO = aluguelDAO;
@@ -54,6 +55,5 @@ namespace AluguelCarro.src.Service
         }
 
 
-        //REGRA DE NEGOCIO ------------------------------------------------
     }
 }

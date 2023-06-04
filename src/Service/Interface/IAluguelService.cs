@@ -10,5 +10,6 @@ namespace AluguelCarro.src.Service.Interface
 {
     internal interface IAluguelService : IGenericCRUD<Aluguel>
     {
+
     }
 }

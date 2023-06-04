@@ -26,6 +26,7 @@ namespace AluguelCarro.src.Controller
 
         
         //CLIENTE MÉTODOS --------------------------------------------------------------
+        
         public bool AdicionarCliente(Cliente cliente)
         {
             return _clienteService.Adicionar(cliente);
@@ -36,7 +37,7 @@ namespace AluguelCarro.src.Controller
             return _clienteService.Atualizar(cliente);
         }
 
-        public Cliente BuscarCliente(Cliente cliente)
+        public Cliente? BuscarCliente(Cliente cliente)
         {
             return _clienteService.BuscarUnico(cliente);
         }
