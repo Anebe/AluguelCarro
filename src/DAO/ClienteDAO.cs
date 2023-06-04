@@ -37,10 +37,6 @@ namespace AluguelCarro.src.DAO
                 {
                     throw new Exception("Cpf já cadastrado por outro Cliente!");
                 }
-
-            } catch (Exception e)
-            {
-
             }
             return false;
         }
@@ -54,10 +50,18 @@ namespace AluguelCarro.src.DAO
 
         public Cliente? BuscarUnico(Cliente item)
         {
-            var atributesCondiction = _sqlFactory.getNotNullPropriety(item);
-            string sql = _sqlFactory.GetSelectSql(atributesCondiction);
-            var cliente = _dbConnection.QuerySingle<Cliente>(sql, item);
-            return cliente;
+            try
+            {
+                var atributesCondiction = _sqlFactory.getNotNullPropriety(item);
+                string sql = _sqlFactory.GetSelectSql(atributesCondiction);
+                var cliente = _dbConnection.QuerySingle<Cliente>(sql, item);
+                return cliente;
+            }
+            catch (InvalidOperationException)
+            {
+
+                throw new Exception("Nenhum cliente encontrado.");
+            }
         }
 
         public List<Cliente> BuscarVarios()

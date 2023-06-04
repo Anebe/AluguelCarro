@@ -23,3 +23,28 @@ C:\Users\thene\OneDrive\Área de Trabalho\Estudos\IFMA\Atividades, Trabalhos, li
 C:\Users\thene\OneDrive\Área de Trabalho\Estudos\IFMA\Atividades, Trabalhos, livros, pdf's etc\5º Período\LPIII\ULTIMA VERSAO DESTA PORRA\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.genruntimeconfig.cache
 C:\Users\thene\OneDrive\Área de Trabalho\Estudos\IFMA\Atividades, Trabalhos, livros, pdf's etc\5º Período\LPIII\ULTIMA VERSAO DESTA PORRA\AluguelCarro\obj\Debug\net6.0-windows\ref\AluguelCarro.dll
 C:\Users\thene\OneDrive\Área de Trabalho\Estudos\IFMA\Atividades, Trabalhos, livros, pdf's etc\5º Período\LPIII\ULTIMA VERSAO DESTA PORRA\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.View.Form4.resources
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\AluguelCarro.exe
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\AluguelCarro.deps.json
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\AluguelCarro.runtimeconfig.json
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\AluguelCarro.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\AluguelCarro.pdb
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\Dapper.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\bin\Debug\net6.0-windows\MySqlConnector.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.csproj.AssemblyReference.cache
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.Properties.Resources.resources
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.Form1.resources
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.View.Form2.resources
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.View.Form4.resources
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.csproj.GenerateResource.cache
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.AssemblyInfoInputs.cache
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.AssemblyInfo.cs
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.csproj.CoreCompileInputs.cache
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.csproj.CopyComplete
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\refint\AluguelCarro.dll
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.pdb
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\AluguelCarro.genruntimeconfig.cache
+C:\Users\GABRIEL\source\repos\SolucaoAluguelCarro\AluguelCarro\obj\Debug\net6.0-windows\ref\AluguelCarro.dll

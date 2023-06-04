@@ -18,11 +18,13 @@ namespace AluguelCarro.src.Service
         //CRUD-------------------------------
         public bool Adicionar(Cliente item)
         {
+            ClienteValidator.Validar(item);
             return _clienteDAO.Adicionar(item);
         }
 
         public bool Atualizar(Cliente item)
         {
+            ClienteValidator.Validar(item);
             return _clienteDAO.Atualizar(item);
         }
 

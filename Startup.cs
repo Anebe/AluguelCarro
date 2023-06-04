@@ -25,7 +25,7 @@ namespace AluguelCarro
 
             //serviceCollection.AddSingleton<IConfiguration>(config);
 
-            string connectionString = "server=localhost;uid=root;pwd=admin;database=aluguel_carro";
+            string connectionString = "server=localhost;uid=root;pwd=;database=aluguel_carro";
 
             serviceCollection.AddSingleton<IClienteService, ClienteService>();
             serviceCollection.AddSingleton<ICarroService, CarroService>();

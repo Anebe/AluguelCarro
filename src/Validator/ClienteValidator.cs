@@ -1,5 +1,7 @@
 ﻿using AluguelCarro.src.DTO;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AluguelCarro.src.Validator
 {
@@ -7,7 +9,7 @@ namespace AluguelCarro.src.Validator
     {
         public static bool Validar(Cliente cliente)
         {
-            List<ArgumentException> erros = new List<ArgumentException>();
+            List<ArgumentException?> erros = new List<ArgumentException?>();
 
             erros.Add(ValidarCnh(cliente.Cnh));
             erros.Add(ValidarDataNascimento(cliente.DtNascimento));
@@ -24,79 +26,62 @@ namespace AluguelCarro.src.Validator
             }
             else
             {
-                var mensagem = string.Join("\n", erros);
+                var mensagem = string.Join("\n", erros.Where(p => p != null));
                 throw new ArgumentException(mensagem);
             }
         }
 
-        public static ArgumentException ValidarEmail(string email)
+        public static ArgumentException? ValidarEmail(string email)
         {
-            Regex regex = new(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
-
-            if (regex.IsMatch(email))
+            if (email == string.Empty)
             {
-                return null;
-            }
-            else
-            {
-                throw new ArgumentException("Estrutura de Email inválido");
+                return new ArgumentException("Email é obrigatório");
             }
 
+            return null;
+        }
+        
+        public static ArgumentException? ValidarTelefone(string telefone)
+        {
+            if (telefone == string.Empty)
+            {
+                return new ArgumentException("Telefone é obrigatório");
+            }
+
+            return null;
         }
 
-        public static ArgumentException ValidarTelefone(string telefone)
+        public static ArgumentException? ValidarCpf(string cpf)
         {
-            Regex regex = new(@"^\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$");
-            if (regex.IsMatch(telefone))
+            if (cpf == string.Empty)
             {
-                return null;
+                return new ArgumentException("Cpf é obrigatório");
             }
-            else
-            {
-                throw new ArgumentException("Estrutura de telefone inválida");
-            }
+
+            return null;
         }
 
-        public static ArgumentException ValidarCpf(string cpf)
+        public static ArgumentException? ValidarRg(string rg)
         {
-            Regex regex = new(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
-            if (regex.IsMatch(cpf))
+            if (rg == string.Empty)
             {
-                return null;
+                return new ArgumentException("Rg é obrigatório");
             }
-            else
-            {
-                throw new ArgumentException("Estrutura de cpf inválida");
-            }
+
+            return null;
         }
 
-        public static ArgumentException ValidarRg(string rg)
+        public static ArgumentException? ValidarCnh(string cnh)
         {
-            Regex regex = new(@"^\d{12}-\d{1}$");
-            if (regex.IsMatch(rg))
+            if (cnh == string.Empty)
             {
-                return null;
+                return new ArgumentException("Cnh é obrigatório");
             }
-            else
-            {
-                throw new ArgumentException("Estrutura de rg inválida");
-            }
+
+            return null;
         }
 
-        public static ArgumentException ValidarCnh(string cnh)
-        {
-            Regex regex = new(@"^\d{11}$");
-            if (regex.IsMatch(cnh))
-            {
-                return null;
-            }
-            else
-            {
-                throw new ArgumentException("Estrutura de cpf inválida");
-            }
-        }
-
-        public static ArgumentException ValidarDataNascimento(DateTime dataNascimento)
+        public static ArgumentException? ValidarDataNascimento(DateTime dataNascimento)
         {
             int idade = DateTime.Now.Year - dataNascimento.Year;
             if (idade >= 18 && (dataNascimento != DateTime.MaxValue || dataNascimento != DateTime.MinValue))
@@ -105,21 +90,18 @@ namespace AluguelCarro.src.Validator
             }
             else
             {
-                throw new ArgumentException("Menores de idade não permitidos");
+                return new ArgumentException("Menores de idade não permitidos");
             }
         }
 
-        public static ArgumentException ValidarRenach(string renach)
+        public static ArgumentException? ValidarRenach(string renach)
         {
-            Regex regex = new(@"^\d{11}$");
-            if (regex.IsMatch(renach))
+            if (renach == string.Empty)
             {
-                return null;
+                return new ArgumentException("Renach é obrigatório");
             }
-            else
-            {
-                throw new ArgumentException("Estrutura de renach inválida");
-            }
+            return null;
         }
+   
     }
 }

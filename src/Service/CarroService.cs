@@ -1,7 +1,7 @@
 ﻿using AluguelCarro.src.DAO.Interface;
 using AluguelCarro.src.DTO;
 using AluguelCarro.src.Service.Interface;
-using AluguelCarro.src.Util;
+using AluguelCarro.src.Validator;
 
 namespace AluguelCarro.src.Service
 {
@@ -16,11 +16,13 @@ namespace AluguelCarro.src.Service
 
         public bool Adicionar(Carro item)
         {
+            CarroValidator.Validar(item);
             return _carroDAO.Adicionar(item);
         }
 
         public bool Atualizar(Carro item)
         {
+            CarroValidator.Validar(item);
             return _carroDAO.Atualizar(item);
         }
 

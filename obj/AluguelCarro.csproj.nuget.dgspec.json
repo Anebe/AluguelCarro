@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\AluguelCarro.csproj": {}
+    "C:\\Users\\GABRIEL\\source\\repos\\SolucaoAluguelCarro\\AluguelCarro\\AluguelCarro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\AluguelCarro.csproj": {
+    "C:\\Users\\GABRIEL\\source\\repos\\SolucaoAluguelCarro\\AluguelCarro\\AluguelCarro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\AluguelCarro.csproj",
+        "projectUniqueName": "C:\\Users\\GABRIEL\\source\\repos\\SolucaoAluguelCarro\\AluguelCarro\\AluguelCarro.csproj",
         "projectName": "AluguelCarro",
-        "projectPath": "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\AluguelCarro.csproj",
-        "packagesPath": "C:\\Users\\thene\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\obj\\",
+        "projectPath": "C:\\Users\\GABRIEL\\source\\repos\\SolucaoAluguelCarro\\AluguelCarro\\AluguelCarro.csproj",
+        "packagesPath": "C:\\Users\\GABRIEL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GABRIEL\\source\\repos\\SolucaoAluguelCarro\\AluguelCarro\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\thene\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GABRIEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +76,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
