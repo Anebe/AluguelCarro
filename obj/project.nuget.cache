@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "4QGXEIln5AYspn0MnSJipPTuNfQZOSxkqLXTWCMwvwnZ4z2DoCLLvjPEj70KegUMLWvfctmf4vqFPTj1AuoJ5Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\thene\\OneDrive\\Área de Trabalho\\Estudos\\IFMA\\Atividades, Trabalhos, livros, pdf's etc\\5º Período\\LPIII\\ULTIMA VERSAO\\AluguelCarro\\AluguelCarro.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thene\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\thene\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\thene\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\thene\\.nuget\\packages\\mysqlconnector\\2.2.6\\mysqlconnector.2.2.6.nupkg.sha512"
+  ],
+  "logs": []
+}

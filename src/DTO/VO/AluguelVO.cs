@@ -12,6 +12,6 @@ namespace AluguelCarro.src.DTO.VO
         public string Placa { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
-        public double Total { get; }
+        public double Total { get; set; }
     }
 }
