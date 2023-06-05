@@ -117,16 +117,18 @@ namespace AluguelCarro
             cliente.Renach = "45678";
             */
 
-            bool resultado = control.AdicionarCliente(cliente);
-
             // Verificar o resultado
-            if (resultado)
+            try
             {
-                MessageBox.Show("cliente adicionado com sucesso!");
+                bool resultado = control.AdicionarCliente(cliente);
+                if (resultado)
+                {
+                    MessageBox.Show("cliente adicionado com sucesso!");
+                }
             }
-            else
+            catch (Exception excep)
             {
-                MessageBox.Show("Erro ao adicionar o cliente.");
+                MessageBox.Show("Erro ao adicionar o cliente.\n" + excep.Message);
             }
         }
 
@@ -138,27 +140,34 @@ namespace AluguelCarro
 
             clienteBusca.Cpf = textBox_CPF_buscar.Text;
 
-            clienteRetorno = control.BuscarCliente(clienteBusca);
+            try
+            {
+                clienteRetorno = control.BuscarCliente(clienteBusca);
 
-            //Limpando o form
-            textBox_NOME.Text = "";
-            textBox_CPF.Text = "";
-            textBox_EMAIL.Text = "";
-            textBox_RG.Text = "";
-            textBox_TEL.Text = "";
-            textBox_CNH.Text = "";
-            textBox_RENACH.Text = "";
+                //Limpando o form
+                textBox_NOME.Text = "";
+                textBox_CPF.Text = "";
+                textBox_EMAIL.Text = "";
+                textBox_RG.Text = "";
+                textBox_TEL.Text = "";
+                textBox_CNH.Text = "";
+                textBox_RENACH.Text = "";
 
-            //Preenchendo os campos para atualizar
-            textBox_NOME_atualizar.Text = clienteRetorno.Nome;
-            textBoxCPF_atualizar.Text = clienteRetorno.Cpf;
-            textBox_EMAIL_atualizar.Text = clienteRetorno.Email;
-            textBox_RG_atualizar.Text = clienteRetorno.Rg;
-            textBox_Tel_atualizar.Text = clienteRetorno.Telefone;
-            textBox_CNH_atualizar.Text = clienteRetorno.Cnh;
-            textBox_RENACH_atualizar.Text = clienteRetorno.Renach;
-            dateTimePicker_NASC_atualizar.Format = DateTimePickerFormat.Short;
-            dateTimePicker_NASC_atualizar.Value = clienteRetorno.DtNascimento;
+                //Preenchendo os campos para atualizar
+                textBox_NOME_atualizar.Text = clienteRetorno.Nome;
+                textBoxCPF_atualizar.Text = clienteRetorno.Cpf;
+                textBox_EMAIL_atualizar.Text = clienteRetorno.Email;
+                textBox_RG_atualizar.Text = clienteRetorno.Rg;
+                textBox_Tel_atualizar.Text = clienteRetorno.Telefone;
+                textBox_CNH_atualizar.Text = clienteRetorno.Cnh;
+                textBox_RENACH_atualizar.Text = clienteRetorno.Renach;
+                dateTimePicker_NASC_atualizar.Format = DateTimePickerFormat.Short;
+                dateTimePicker_NASC_atualizar.Value = clienteRetorno.DtNascimento;
+            }
+            catch (Exception excep)
+            {
+                MessageBox.Show("Cliente não encontrado.");
+            }
         }
 
         private void BtnAtualizar_Click(object sender, EventArgs e)
@@ -182,16 +191,20 @@ namespace AluguelCarro
             clienteRetorno.Renach = textBox_RENACH_atualizar.Text;
 
 
-            bool resultado = control.AtualizarCliente(clienteRetorno);
+            
 
             // Verificar o resultado
-            if (resultado)
+            try
             {
-                MessageBox.Show("cliente atualizado com sucesso!");
+                bool resultado = control.AtualizarCliente(clienteRetorno);
+                if (resultado)
+                {
+                    MessageBox.Show("cliente atualizado com sucesso!");
+                }
             }
-            else
+            catch (Exception excep)
             {
-                MessageBox.Show("Erro ao atualizar o cliente.");
+                MessageBox.Show("Erro ao atualizar o cliente.\n" + excep.Message);
             }
 
             //Limpando o form
@@ -212,18 +225,22 @@ namespace AluguelCarro
 
             clienteBusca.Cpf = textBox_CPF_buscar.Text;
 
-            clienteRetorno = control.BuscarCliente(clienteBusca);
-
-            bool resultado = control.RemoverCliente(clienteRetorno);
+            
 
             // Verificar o resultado
-            if (resultado)
+            try
             {
-                MessageBox.Show("cliente removido com sucesso!");
+                clienteRetorno = control.BuscarCliente(clienteBusca);
+
+                bool resultado = control.RemoverCliente(clienteRetorno);
+                if (resultado)
+                {
+                    MessageBox.Show("cliente removido com sucesso!");
+                }
             }
-            else
+            catch (Exception excep)
             {
-                MessageBox.Show("Erro ao remover o cliente.");
+                MessageBox.Show("Erro ao remover o cliente.\n" + excep.Message);
             }
         }
     }

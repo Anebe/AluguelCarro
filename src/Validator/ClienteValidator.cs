@@ -1,4 +1,5 @@
 ﻿using AluguelCarro.src.DTO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -19,8 +20,8 @@ namespace AluguelCarro.src.Validator
             erros.Add(ValidarCpf(cliente.Cpf));
             erros.Add(ValidarRg(cliente.Rg));
 
-
-            if (erros.Count == 0)
+            List<ArgumentException> onlyErros = erros.Where(p => p != null).ToList<ArgumentException>();
+            if (onlyErros != null && onlyErros.Count == 0)
             {
                 return true;
             }

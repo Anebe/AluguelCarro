@@ -71,29 +71,19 @@
             panel7 = new Panel();
             panel8 = new Panel();
             label17 = new Label();
-            BtnBuscarAluguelCarro = new Button();
             textBox_ALUGUEL_PLACA_buscar = new TextBox();
             label18 = new Label();
-            label19 = new Label();
             BtnBuscarAluguelCpf = new Button();
             textBox_ALUGUEL_CPF_bucar = new TextBox();
             label20 = new Label();
-            textBox_dataFim = new TextBox();
-            label21 = new Label();
-            textBox_dataInicio = new TextBox();
-            label22 = new Label();
-            textBox_ID_carro = new TextBox();
-            label23 = new Label();
-            textBox_ID_cliente = new TextBox();
-            label24 = new Label();
-            label25 = new Label();
-            textBox_total = new TextBox();
+            dataGridView_Alugueis = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_Alugueis).BeginInit();
             SuspendLayout();
             // 
             // BtnFechar
@@ -574,16 +564,6 @@
             label17.TabIndex = 7;
             label17.Text = "Cadastrar Carro";
             // 
-            // BtnBuscarAluguelCarro
-            // 
-            BtnBuscarAluguelCarro.Image = Properties.Resources.lupa;
-            BtnBuscarAluguelCarro.Location = new Point(460, 332);
-            BtnBuscarAluguelCarro.Name = "BtnBuscarAluguelCarro";
-            BtnBuscarAluguelCarro.Size = new Size(33, 33);
-            BtnBuscarAluguelCarro.TabIndex = 49;
-            BtnBuscarAluguelCarro.UseVisualStyleBackColor = true;
-            BtnBuscarAluguelCarro.Click += BtnBuscarAluguelCarro_Click;
-            // 
             // textBox_ALUGUEL_PLACA_buscar
             // 
             textBox_ALUGUEL_PLACA_buscar.BackColor = Color.FromArgb(24, 30, 54);
@@ -605,17 +585,6 @@
             label18.Size = new Size(51, 20);
             label18.TabIndex = 47;
             label18.Text = "placa:";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.ForeColor = SystemColors.ButtonHighlight;
-            label19.Location = new Point(511, 338);
-            label19.Name = "label19";
-            label19.Size = new Size(33, 20);
-            label19.TabIndex = 50;
-            label19.Text = "OU";
             // 
             // BtnBuscarAluguelCpf
             // 
@@ -649,115 +618,18 @@
             label20.TabIndex = 51;
             label20.Text = "Cpf:";
             // 
-            // textBox_dataFim
+            // dataGridView_Alugueis
             // 
-            textBox_dataFim.BackColor = Color.FromArgb(24, 30, 54);
-            textBox_dataFim.BorderStyle = BorderStyle.None;
-            textBox_dataFim.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_dataFim.ForeColor = SystemColors.InactiveCaption;
-            textBox_dataFim.Location = new Point(317, 484);
-            textBox_dataFim.Name = "textBox_dataFim";
-            textBox_dataFim.Size = new Size(189, 19);
-            textBox_dataFim.TabIndex = 61;
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.ForeColor = SystemColors.ButtonHighlight;
-            label21.Location = new Point(201, 483);
-            label21.Name = "label21";
-            label21.Size = new Size(59, 20);
-            label21.TabIndex = 60;
-            label21.Text = "DT fim:";
-            // 
-            // textBox_dataInicio
-            // 
-            textBox_dataInicio.BackColor = Color.FromArgb(24, 30, 54);
-            textBox_dataInicio.BorderStyle = BorderStyle.None;
-            textBox_dataInicio.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_dataInicio.ForeColor = SystemColors.InactiveCaption;
-            textBox_dataInicio.Location = new Point(317, 453);
-            textBox_dataInicio.Name = "textBox_dataInicio";
-            textBox_dataInicio.Size = new Size(189, 19);
-            textBox_dataInicio.TabIndex = 59;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.ForeColor = SystemColors.ButtonHighlight;
-            label22.Location = new Point(201, 451);
-            label22.Name = "label22";
-            label22.Size = new Size(73, 20);
-            label22.TabIndex = 58;
-            label22.Text = "DT inicio:";
-            // 
-            // textBox_ID_carro
-            // 
-            textBox_ID_carro.BackColor = Color.FromArgb(24, 30, 54);
-            textBox_ID_carro.BorderStyle = BorderStyle.None;
-            textBox_ID_carro.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_ID_carro.ForeColor = SystemColors.InactiveCaption;
-            textBox_ID_carro.Location = new Point(317, 422);
-            textBox_ID_carro.Name = "textBox_ID_carro";
-            textBox_ID_carro.Size = new Size(189, 19);
-            textBox_ID_carro.TabIndex = 57;
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.ForeColor = SystemColors.ButtonHighlight;
-            label23.Location = new Point(201, 422);
-            label23.Name = "label23";
-            label23.Size = new Size(70, 20);
-            label23.TabIndex = 56;
-            label23.Text = "ID carro:";
-            // 
-            // textBox_ID_cliente
-            // 
-            textBox_ID_cliente.BackColor = Color.FromArgb(24, 30, 54);
-            textBox_ID_cliente.BorderStyle = BorderStyle.None;
-            textBox_ID_cliente.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_ID_cliente.ForeColor = SystemColors.InactiveCaption;
-            textBox_ID_cliente.Location = new Point(317, 393);
-            textBox_ID_cliente.Name = "textBox_ID_cliente";
-            textBox_ID_cliente.Size = new Size(189, 19);
-            textBox_ID_cliente.TabIndex = 55;
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.ForeColor = SystemColors.ButtonHighlight;
-            label24.Location = new Point(201, 392);
-            label24.Name = "label24";
-            label24.Size = new Size(80, 20);
-            label24.TabIndex = 54;
-            label24.Text = "ID cliente:";
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.ForeColor = SystemColors.ButtonHighlight;
-            label25.Location = new Point(201, 515);
-            label25.Name = "label25";
-            label25.Size = new Size(48, 20);
-            label25.TabIndex = 60;
-            label25.Text = "Total:";
-            // 
-            // textBox_total
-            // 
-            textBox_total.BackColor = Color.FromArgb(24, 30, 54);
-            textBox_total.BorderStyle = BorderStyle.None;
-            textBox_total.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_total.ForeColor = SystemColors.InactiveCaption;
-            textBox_total.Location = new Point(317, 516);
-            textBox_total.Name = "textBox_total";
-            textBox_total.Size = new Size(189, 19);
-            textBox_total.TabIndex = 61;
+            dataGridView_Alugueis.AllowUserToAddRows = false;
+            dataGridView_Alugueis.AllowUserToDeleteRows = false;
+            dataGridView_Alugueis.BackgroundColor = Color.FromArgb(24, 30, 54);
+            dataGridView_Alugueis.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_Alugueis.Location = new Point(201, 374);
+            dataGridView_Alugueis.Name = "dataGridView_Alugueis";
+            dataGridView_Alugueis.ReadOnly = true;
+            dataGridView_Alugueis.RowTemplate.Height = 25;
+            dataGridView_Alugueis.Size = new Size(653, 177);
+            dataGridView_Alugueis.TabIndex = 62;
             // 
             // Form4
             // 
@@ -765,21 +637,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSlateGray;
             ClientSize = new Size(951, 577);
-            Controls.Add(textBox_total);
-            Controls.Add(textBox_dataFim);
-            Controls.Add(label25);
-            Controls.Add(label21);
-            Controls.Add(textBox_dataInicio);
-            Controls.Add(label22);
-            Controls.Add(textBox_ID_carro);
-            Controls.Add(label23);
-            Controls.Add(textBox_ID_cliente);
-            Controls.Add(label24);
+            Controls.Add(dataGridView_Alugueis);
             Controls.Add(BtnBuscarAluguelCpf);
             Controls.Add(textBox_ALUGUEL_CPF_bucar);
             Controls.Add(label20);
-            Controls.Add(label19);
-            Controls.Add(BtnBuscarAluguelCarro);
             Controls.Add(textBox_ALUGUEL_PLACA_buscar);
             Controls.Add(label18);
             Controls.Add(BtnAtualizarCarro);
@@ -826,6 +687,7 @@
             panel5.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_Alugueis).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -875,22 +737,11 @@
         private Panel panel7;
         private Panel panel8;
         private Label label17;
-        private Button BtnBuscarAluguelCarro;
         private TextBox textBox_ALUGUEL_PLACA_buscar;
         private Label label18;
-        private Label label19;
         private Button BtnBuscarAluguelCpf;
         private TextBox textBox_ALUGUEL_CPF_bucar;
         private Label label20;
-        private TextBox textBox_dataFim;
-        private Label label21;
-        private TextBox textBox_dataInicio;
-        private Label label22;
-        private TextBox textBox_ID_carro;
-        private Label label23;
-        private TextBox textBox_ID_cliente;
-        private Label label24;
-        private Label label25;
-        private TextBox textBox_total;
+        private DataGridView dataGridView_Alugueis;
     }
 }

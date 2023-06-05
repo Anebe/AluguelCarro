@@ -66,19 +66,22 @@ namespace AluguelCarro.View
             aluguel.DataFim = DateTime.Parse(dateTime_Devolucao.Text);
             //aluguel.Total = aluguel.calcular(carro);
 
-
             AtendimentoController control = new AtendimentoController(Startup.GetServiceProvider());
-            bool resultado = control.AdicionarAluguel(aluguel);
-
+            
             // Verificar o resultado
-            if (resultado)
+            try
             {
-                MessageBox.Show("carro alugado com sucesso!");
+                bool resultado = control.AdicionarAluguel(aluguel);
+                if (resultado)
+                {
+                    MessageBox.Show("Carro alugado com sucesso!");
+                }
             }
-            else
+            catch (Exception excep)
             {
-                MessageBox.Show("Erro ao alugar o carro.");
+                MessageBox.Show("Erro ao alugar o carro.\n" + excep.Message);
             }
+            
 
         }
 
@@ -119,6 +122,8 @@ namespace AluguelCarro.View
         private void BtnCarregarDados_Click(object sender, EventArgs e)
         {
             AtendimentoController control = new AtendimentoController(Startup.GetServiceProvider());
+
+            
             listaClientes = control.BuscarClientes();
             listaCarros = control.BuscarCarroS();
 

@@ -70,6 +70,7 @@ namespace AluguelCarro.src.Controller
         {
             var item = new Aluguel() { DtFim = aluguel.DataFim, DtInicio = aluguel.DataInicio };
 
+            
             var carro = _carroService.BuscarUnico(new Carro() { Id = aluguel.Id_carro });
             var cliente = _clienteService.BuscarUnico(new Cliente() { Id = aluguel.Id_cliente });
 
@@ -107,6 +108,10 @@ namespace AluguelCarro.src.Controller
             return _aluguelService.BuscarVarios();
         }
 
+        public List<Aluguel> BuscarAlugueis(Aluguel filtro)
+        {
+            return _aluguelService.BuscarVarios(filtro);
+        }
 
         //CARRO MÉTODOS --------------------------------------------------------------
         public bool AdicionarCarro(Carro carro)
@@ -124,15 +129,7 @@ namespace AluguelCarro.src.Controller
 
         public bool AtualizarCarro(Carro carro)
         {
-            try
-            {
-                return _carroService.Atualizar(carro);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
+            return _carroService.Atualizar(carro);
         }
 
         public Carro BuscarCarro(Carro carro)

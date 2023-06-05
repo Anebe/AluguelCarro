@@ -59,7 +59,6 @@ namespace AluguelCarro.src.DAO
             }
             catch (InvalidOperationException)
             {
-
                 throw new Exception("Nenhum cliente encontrado.");
             }
         }

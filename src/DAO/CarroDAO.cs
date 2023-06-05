@@ -42,16 +42,24 @@ namespace AluguelCarro.src.DAO
 
         public bool Atualizar(Carro item)
         {
-            string sql = _sqlFactory.GetUpdateSql();
+            string sql = _sqlFactory.GetUpdateSql("Id");
             int row = _dbConnection.Execute(sql, item);
             return row > 0 && row < 2;
         }
 
         public Carro? BuscarUnico(Carro item)
         {
-            string sql = _sqlFactory.GetSelectSql(new string[] { "Id" });
-            var carro = _dbConnection.QuerySingle<Carro>(sql, item);
-            return carro;
+            try
+            {
+                var atributesCondiction = _sqlFactory.getNotNullPropriety(item);
+                string sql = _sqlFactory.GetSelectSql(atributesCondiction);
+                var carro = _dbConnection.QuerySingle<Carro>(sql, item);
+                return carro;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new Exception("Nenhum carro encontrado.");
+            }
         }
 
         public List<Carro> BuscarVarios()

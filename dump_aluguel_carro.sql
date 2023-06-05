@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `aluguel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aluguel` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int NOT NULL,
   `id_carro` int NOT NULL,
   `total` decimal(14,2) NOT NULL,
@@ -34,9 +34,9 @@ CREATE TABLE `aluguel` (
   PRIMARY KEY (`id`),
   KEY `GER345T_idx` (`id_cliente`),
   KEY `6YR546_idx` (`id_carro`),
-  CONSTRAINT `6YR546` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`),
-  CONSTRAINT `GER345T` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `6YR546` FOREIGN KEY (`id_carro`) REFERENCES `carro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `GER345T` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `aluguel` (
 
 LOCK TABLES `aluguel` WRITE;
 /*!40000 ALTER TABLE `aluguel` DISABLE KEYS */;
-INSERT INTO `aluguel` VALUES (0,1,4,748.80,'2023-05-01','2023-06-02');
+INSERT INTO `aluguel` VALUES (3,7,4,0.00,'2023-06-05','2023-06-05'),(4,7,4,117.00,'2023-06-30','2023-07-05');
 /*!40000 ALTER TABLE `aluguel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `carro` (
   `valor_diaria` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `placa_UNIQUE` (`placa`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +73,7 @@ CREATE TABLE `carro` (
 
 LOCK TABLES `carro` WRITE;
 /*!40000 ALTER TABLE `carro` DISABLE KEYS */;
-INSERT INTO `carro` VALUES (4,'qualquer','otomodelo','r3h82-3j',23.40);
+INSERT INTO `carro` VALUES (4,'qualquer','otomodelo','2',23.40);
 /*!40000 ALTER TABLE `carro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `cliente` (
   UNIQUE KEY `cnh_UNIQUE` (`cnh`),
   UNIQUE KEY `rg_UNIQUE` (`rg`),
   UNIQUE KEY `renach_UNIQUE` (`renach`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'gab','123.123.123-12','1234','2001-10-08','gab@gmail.com','123456789-1','(98)91234-1234','45678');
+INSERT INTO `cliente` VALUES (7,'1','1','1','1988-12-25','1','1','11','1');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -122,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-03 22:49:09
+-- Dump completed on 2023-06-05 14:44:14

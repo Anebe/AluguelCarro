@@ -10,6 +10,6 @@ namespace AluguelCarro.src.Service.Interface
 {
     internal interface IAluguelService : IGenericCRUD<Aluguel>
     {
-
+        public List<Aluguel> BuscarVarios(Aluguel filtro);
     }
 }

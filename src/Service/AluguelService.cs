@@ -20,13 +20,18 @@ namespace AluguelCarro.src.Service
         //CRUD ------------------------------------------------
         public bool Adicionar(Aluguel item)
         {
-            List<Aluguel> alugueisCarros = _sql.getItensBySql<Aluguel>("select * from aluguel where id_carro = @Id_carro and dtInicio >= @DtInicio and dtFim <= @DtFim", item);
-            
-            if(alugueisCarros.Count > 0)
+            try
             {
-                return false;
+                List<Aluguel> alugueisCarros = _sql.getItensBySql<Aluguel>("select * from aluguel where id_carro = @Id_carro and dtInicio >= @DtInicio and dtFim <= @DtFim", item);
+                if (alugueisCarros.Count > 0)
+                {
+                    return false;
+                }
             }
+            catch (Exception)
+            {
 
+            }
             var diaria = item.getCarro().Valor_diaria;
             TimeSpan qtdDias = item.DtFim - item.DtInicio;
             item.Total = diaria * qtdDias.Days;
@@ -47,6 +52,11 @@ namespace AluguelCarro.src.Service
         public List<Aluguel> BuscarVarios()
         {
             return _aluguelDAO.BuscarVarios();
+        }
+
+        public List<Aluguel> BuscarVarios(Aluguel filtro)
+        {
+            return _aluguelDAO.BuscarVarios(filtro);
         }
 
         public bool Remover(Aluguel item)
